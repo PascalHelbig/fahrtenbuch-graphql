@@ -1,8 +1,9 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull,
-  GraphQLInputObjectType, GraphQLID } = require('graphql');
+  GraphQLInputObjectType } = require('graphql');
 const EmailType = require('./scalar/EmailType');
 const PasswordType = require('./scalar/PasswordType');
 const userController = require('../controllers/user');
+const UserType = require('./types/UserType');
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -19,15 +20,6 @@ const SignupInputType = new GraphQLInputObjectType({
   fields: {
     email: { type: new GraphQLNonNull(EmailType) },
     password: { type: new GraphQLNonNull(PasswordType) },
-  },
-});
-
-const UserType = new GraphQLObjectType({
-  name: 'UserType',
-  fields: {
-    id: { type: GraphQLID, resolve: ({ id }) => id },
-    name: { type: GraphQLString, resolve: ({ name }) => name },
-    email: { type: EmailType, resolve: ({ email }) => email },
   },
 });
 
