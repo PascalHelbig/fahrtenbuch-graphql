@@ -1,7 +1,7 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull,
   GraphQLInputObjectType, GraphQLID } = require('graphql');
-const EmailType = require('./EmailType');
-const PasswordType = require('./PasswordType');
+const EmailType = require('./scalar/EmailType');
+const PasswordType = require('./scalar/PasswordType');
 const userController = require('../controllers/user');
 
 const query = new GraphQLObjectType({
