@@ -5,6 +5,7 @@ const { Kind } = require('graphql/language');
 module.exports = params =>
   new GraphQLScalarType({
     name: params.name,
+    description: params.description,
     serialize: value => value,
     parseValue: value => value,
     parseLiteral: (ast) => {
