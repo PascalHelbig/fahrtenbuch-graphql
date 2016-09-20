@@ -1,6 +1,7 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull,
-  GraphQLInt, GraphQLInputObjectType } = require('graphql');
+  GraphQLInputObjectType, GraphQLID } = require('graphql');
 const EmailType = require('./EmailType');
+const userController = require('../controllers/user');
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -20,18 +21,30 @@ const SignupInputType = new GraphQLInputObjectType({
   },
 });
 
+const UserType = new GraphQLObjectType({
+  name: 'UserType',
+  fields: {
+    id: { type: GraphQLID, resolve: ({ id }) => id },
+    name: { type: GraphQLString, resolve: ({ name }) => name },
+    email: { type: EmailType, resolve: ({ email }) => email },
+  },
+});
+
 const mutation = new GraphQLObjectType({
   name: 'Mutations',
   fields: {
     signup: {
-      type: GraphQLInt,
+      type: new GraphQLObjectType({
+        name: 'SignupReturnType',
+        fields: {
+          token: { type: GraphQLString },
+          user: { type: UserType },
+        },
+      }),
       args: {
         user: { type: new GraphQLNonNull(SignupInputType) },
       },
-      resolve: (value, { user }) => {
-        console.log(user);
-        return 234234;
-      },
+      resolve: (value, { user }) => userController.signup(user),
     },
   },
 });

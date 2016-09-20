@@ -19,7 +19,7 @@ const User = bookshelf.model('User', {
   //   return this.hasMany('Participation');
   // },
 
-  initialize: () => this.on('saving', this.hashPassword, this),
+  initialize() { this.on('saving', this.hashPassword, this); },
 
   hashPassword: (model, attrs, options) => {
     const password = options.patch ? attrs.password : model.get('password');
