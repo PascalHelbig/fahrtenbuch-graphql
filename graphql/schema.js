@@ -1,6 +1,6 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull } = require('graphql');
 const userController = require('../controllers/user');
-const UserType = require('./types/UserType');
+const LoginType = require('./types/LoginType');
 const SignupInputType = require('./inputTypes/SignupInputType');
 
 const query = new GraphQLObjectType({
@@ -17,13 +17,7 @@ const mutation = new GraphQLObjectType({
   name: 'Mutations',
   fields: {
     signup: {
-      type: new GraphQLObjectType({
-        name: 'SignupReturnType',
-        fields: {
-          token: { type: GraphQLString },
-          user: { type: UserType },
-        },
-      }),
+      type: LoginType,
       args: {
         user: { type: new GraphQLNonNull(SignupInputType) },
       },
