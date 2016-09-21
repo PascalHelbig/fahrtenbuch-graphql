@@ -1,6 +1,7 @@
 // var crypto = require('crypto');
 const bcrypt = require('bcrypt-nodejs');
 const bookshelf = require('../config/bookshelf');
+const Promise = require('bluebird');
 // const Boat = require('./Boat');
 // const Groups = require('./Group');
 // require('./Participation');
@@ -37,9 +38,13 @@ const User = bookshelf.model('User', {
     );
   },
 
-  comparePassword: (password, done) => {
+  comparePassword(password) {
     const model = this;
-    bcrypt.compare(password, model.get('password'), (err, isMatch) => done(err, isMatch));
+    return new Promise((resolve, reject) =>
+      bcrypt.compare(password, model.get('password'), (err, isMatch) =>
+        (err ? reject(err) : resolve(isMatch))
+      )
+    );
   },
 
   hidden: ['password', 'passwordResetToken', 'passwordResetExpires'],

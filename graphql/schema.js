@@ -2,6 +2,8 @@ const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull } = requ
 const userController = require('../controllers/user');
 const LoginType = require('./types/LoginType');
 const SignupInputType = require('./inputTypes/SignupInputType');
+const PasswordType = require('./scalar/PasswordType');
+const EmailType = require('./scalar/EmailType');
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -22,6 +24,14 @@ const mutation = new GraphQLObjectType({
         user: { type: new GraphQLNonNull(SignupInputType) },
       },
       resolve: (value, { user }) => userController.signup(user),
+    },
+    login: {
+      type: LoginType,
+      args: {
+        email: { type: new GraphQLNonNull(EmailType) },
+        password: { type: new GraphQLNonNull(PasswordType) },
+      },
+      resolve: (parent, { email, password }) => userController.login(email, password),
     },
   },
 });

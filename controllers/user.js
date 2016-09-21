@@ -26,3 +26,17 @@ module.exports.signup = user =>
         throw new Error('The email address you have entered is already associated with another account.');
       }
     });
+
+module.exports.login = (email, password) =>
+  new User({ email })
+    .fetch({ require: true })
+    .then(user =>
+      user.comparePassword(password)
+        .then((isMatch) => {
+          if (!isMatch) {
+            throw new Error('Invalid email or password');
+          }
+          return { token: generateToken(user), user: user.toJSON() };
+        })
+    )
+    .catch(User.NotFoundError, () => { throw new Error('Emailaddress not found'); });
