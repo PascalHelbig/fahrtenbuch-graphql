@@ -29,6 +29,8 @@ const User = bookshelf.model('User', {
       bcrypt.genSalt(10, (err, salt) =>
         bcrypt.hash(password, salt, null, (err2, hash) => {
           if (options.patch) {
+            // ToDo: Fix this eslint error
+            // eslint-disable-next-line no-param-reassign
             attrs.password = hash;
           }
           model.set('password', hash);
