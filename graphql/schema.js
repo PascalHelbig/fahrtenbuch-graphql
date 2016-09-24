@@ -1,6 +1,7 @@
 const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull } = require('graphql');
 const userController = require('../controllers/user');
 const LoginType = require('./types/LoginType');
+const UserType = require('./types/UserType');
 const SignupInputType = require('./inputTypes/SignupInputType');
 const PasswordType = require('./scalar/PasswordType');
 const EmailType = require('./scalar/EmailType');
@@ -11,6 +12,13 @@ const query = new GraphQLObjectType({
     hello: {
       type: GraphQLString,
       resolve: () => 'Hello World',
+    },
+    me: {
+      type: UserType,
+      args: {
+        token: { type: new GraphQLNonNull(GraphQLString) },
+      },
+      resolve: (parent, { token }) => userController.me(token),
     },
   },
 });

@@ -20,7 +20,7 @@ module.exports.signup = user =>
     email: user.email,
     password: user.password,
   }).save()
-    .then(savedUser => ({ token: generateToken(savedUser), user: savedUser.toJSON() }))
+    .then(savedUser => ({ token: generateToken(savedUser), user: savedUser }))
     .catch((err) => {
       if (err.code === 'ER_DUP_ENTRY' || err.code === '23505') {
         throw new Error('The email address you have entered is already associated with another account.');
@@ -36,7 +36,12 @@ module.exports.login = (email, password) =>
           if (!isMatch) {
             throw new Error('Invalid email or password');
           }
-          return { token: generateToken(user), user: user.toJSON() };
+          return { token: generateToken(user), user };
         })
     )
     .catch(User.NotFoundError, () => { throw new Error('Emailaddress not found'); });
+
+module.exports.me = (token) => {
+  const id = jwt.verify(token, SECRET).sub;
+  return new User({ id }).fetch({ require: true });
+};

@@ -4,9 +4,9 @@ const EmailType = require('../scalar/EmailType');
 const UserType = new GraphQLObjectType({
   name: 'UserType',
   fields: {
-    id: { type: GraphQLID, resolve: ({ id }) => id },
-    name: { type: GraphQLString, resolve: ({ name }) => name },
-    email: { type: EmailType, resolve: ({ email }) => email },
+    id: { type: GraphQLID, resolve: user => user.toJSON().id },
+    name: { type: GraphQLString, resolve: user => user.toJSON().name },
+    email: { type: EmailType, resolve: user => user.toJSON().email },
   },
 });
 
