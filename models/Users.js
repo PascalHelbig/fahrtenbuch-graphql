@@ -3,6 +3,7 @@ const bcrypt = require('bcrypt-nodejs');
 const bookshelf = require('../config/bookshelf');
 const Promise = require('bluebird');
 require('./Boat');
+require('./Group');
 // const Groups = require('./Group');
 // require('./Participation');
 
@@ -12,7 +13,9 @@ const User = bookshelf.model('User', {
   boats() {
     return this.morphMany('Boat', 'owner');
   },
-  // groups: () => this.belongsToMany('Groups', 'memberships').withPivot(['is_admin']),
+  groups() {
+    return this.belongsToMany('Group', 'memberships').withPivot(['is_admin'])
+  },
   // createdEntries() {
   //   return this.hasMany('Entry', 'creator');
   // },
