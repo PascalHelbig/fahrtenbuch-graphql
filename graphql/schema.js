@@ -1,5 +1,6 @@
-const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull } = require('graphql');
+const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql');
 const userController = require('../controllers/user');
+const groupController = require('../controllers/group');
 const LoginType = require('./types/LoginType');
 const UserType = require('./types/UserType');
 const SignupInputType = require('./inputTypes/SignupInputType');
@@ -7,6 +8,7 @@ const PasswordType = require('./scalar/PasswordType');
 const EmailType = require('./scalar/EmailType');
 const BoatType = require('./types/BoatType');
 const BoatInputType = require('./inputTypes/BoatInputType');
+const GroupType = require('./types/GroupType');
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -21,6 +23,10 @@ const query = new GraphQLObjectType({
         token: { type: new GraphQLNonNull(GraphQLString) },
       },
       resolve: (parent, { token }) => userController.me(token),
+    },
+    groups: {
+      type: new GraphQLList(GroupType),
+      resolve: () => groupController.all(),
     },
   },
 });
