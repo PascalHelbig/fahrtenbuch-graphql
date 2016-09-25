@@ -41,7 +41,11 @@ module.exports.login = (email, password) =>
     )
     .catch(User.NotFoundError, () => { throw new Error('Emailaddress not found'); });
 
-module.exports.me = (token) => {
+const me = (token) => {
   const id = jwt.verify(token, SECRET).sub;
   return new User({ id }).fetch({ require: true });
 };
+module.exports.me = me;
+
+module.exports.addUserBoat = (token, boat) =>
+  me(token).then(user => user.boats().create(boat));

@@ -5,6 +5,8 @@ const UserType = require('./types/UserType');
 const SignupInputType = require('./inputTypes/SignupInputType');
 const PasswordType = require('./scalar/PasswordType');
 const EmailType = require('./scalar/EmailType');
+const BoatType = require('./types/BoatType');
+const BoatInputType = require('./inputTypes/BoatInputType');
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -40,6 +42,14 @@ const mutation = new GraphQLObjectType({
         password: { type: new GraphQLNonNull(PasswordType) },
       },
       resolve: (parent, { email, password }) => userController.login(email, password),
+    },
+    addUserBoat: {
+      type: BoatType,
+      args: {
+        token: { type: new GraphQLNonNull(GraphQLString) },
+        boat: { type: new GraphQLNonNull(BoatInputType) },
+      },
+      resolve: (parent, { token, boat }) => userController.addUserBoat(token, boat),
     },
   },
 });
