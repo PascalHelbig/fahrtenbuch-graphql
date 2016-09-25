@@ -1,5 +1,6 @@
-const { GraphQLObjectType, GraphQLID, GraphQLString } = require('graphql');
+const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList } = require('graphql');
 const EmailType = require('../scalar/EmailType');
+const BoatType = require('./BoatType');
 
 const UserType = new GraphQLObjectType({
   name: 'UserType',
@@ -7,6 +8,7 @@ const UserType = new GraphQLObjectType({
     id: { type: GraphQLID, resolve: user => user.toJSON().id },
     name: { type: GraphQLString, resolve: user => user.toJSON().name },
     email: { type: EmailType, resolve: user => user.toJSON().email },
+    boats: { type: new GraphQLList(BoatType), resolve: user => user.boats().fetch() },
   },
 });
 
