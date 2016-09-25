@@ -14,7 +14,7 @@ const User = bookshelf.model('User', {
     return this.morphMany('Boat', 'owner');
   },
   groups() {
-    return this.belongsToMany('Group', 'memberships').withPivot(['is_admin'])
+    return this.belongsToMany('Group', 'memberships').withPivot(['is_admin']);
   },
   // createdEntries() {
   //   return this.hasMany('Entry', 'creator');
