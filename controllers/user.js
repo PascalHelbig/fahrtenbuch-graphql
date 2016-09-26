@@ -2,8 +2,6 @@ const jwt = require('jsonwebtoken');
 const moment = require('moment');
 const User = require('../models/Users');
 
-const SECRET = 'SECRET!!!';
-
 const generateToken = (user) => {
   const payload = {
     iss: 'my.domain.com',
@@ -11,7 +9,7 @@ const generateToken = (user) => {
     iat: moment().unix(),
     exp: moment().add(7, 'days').unix(),
   };
-  return jwt.sign(payload, SECRET);
+  return jwt.sign(payload, process.env.JWT_SECRET);
 };
 
 module.exports.signup = user =>
@@ -42,7 +40,7 @@ module.exports.login = (email, password) =>
     .catch(User.NotFoundError, () => { throw new Error('Emailaddress not found'); });
 
 const me = (token) => {
-  const id = jwt.verify(token, SECRET).sub;
+  const id = jwt.verify(token, process.env.JWT_SECRET).sub;
   return new User({ id }).fetch({ require: true });
 };
 module.exports.me = me;
