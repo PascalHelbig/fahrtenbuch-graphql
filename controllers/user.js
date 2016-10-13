@@ -47,3 +47,11 @@ module.exports.me = me;
 
 module.exports.addUserBoat = (token, boat) =>
   me(token).then(user => user.boats().create(boat));
+
+module.exports.findById = id =>
+  new User({ id }).fetch({ require: true });
+
+module.exports.getGroups = user =>
+  user.groups().fetch();
+
+module.exports.instanceof = group => group instanceof User;

@@ -1,18 +1,25 @@
-const { GraphQLObjectType, GraphQLID, GraphQLString, GraphQLList } = require('graphql');
+const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
+const { globalIdField, connectionDefinitions, connectionArgs, connectionFromPromisedArray } = require('graphql-relay');
 const EmailType = require('../scalar/EmailType');
 const BoatType = require('./BoatType');
-// const GroupType = require('./GroupType');
+const userController = require('../../controllers/user');
+const { nodeInterface } = require('../relayNode');
 
-const UserType = new GraphQLObjectType({
-  name: 'UserType',
+module.exports = new GraphQLObjectType({
+  name: 'User',
+  isTypeOf: obj => userController.instanceof(obj),
   fields: () => ({
-    id: { type: GraphQLID, resolve: user => user.get('id') },
+    id: globalIdField('User'),
     name: { type: GraphQLString, resolve: user => user.get('name') },
     email: { type: EmailType, resolve: user => user.get('email') },
     boats: { type: new GraphQLList(BoatType), resolve: user => user.boats().fetch() },
-    // groups: { type: new GraphQLList(GroupType), resolve: user => user.groups().fetch() },
-    groups: { type: new GraphQLList(require('./GroupType')), resolve: user => user.groups().fetch() },
+    groups: {
+      description: 'A list of users groups',
+      // eslint-disable-next-line global-require
+      type: connectionDefinitions({ name: 'Group', nodeType: require('./GroupType') }).connectionType,
+      args: connectionArgs,
+      resolve: (user, args) => connectionFromPromisedArray(userController.getGroups(user), args),
+    },
   }),
+  interfaces: [nodeInterface],
 });
-
-module.exports = UserType;
