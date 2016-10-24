@@ -3,7 +3,6 @@ const userController = require('../controllers/user');
 const groupController = require('../controllers/group');
 const LoginType = require('./types/LoginType');
 const UserType = require('./types/UserType');
-const SignupInputType = require('./inputTypes/SignupInputType');
 const PasswordType = require('./scalar/PasswordType');
 const EmailType = require('./scalar/EmailType');
 const BoatType = require('./types/BoatType');
@@ -37,9 +36,11 @@ const mutation = new GraphQLObjectType({
     signup: {
       type: LoginType,
       args: {
-        user: { type: new GraphQLNonNull(SignupInputType) },
+        email: { type: new GraphQLNonNull(EmailType) },
+        password: { type: new GraphQLNonNull(PasswordType) },
+        name: { type: GraphQLString },
       },
-      resolve: (value, { user }) => userController.signup(user),
+      resolve: (value, user) => userController.signup(user),
     },
     login: {
       type: LoginType,
