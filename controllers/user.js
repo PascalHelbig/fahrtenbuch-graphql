@@ -48,6 +48,19 @@ module.exports.me = me;
 module.exports.addUserBoat = (token, boat) =>
   me(token).then(user => user.boats().create(boat));
 
+const updateUserToAdmin = (user, group) =>
+  user.groups().updatePivot(
+    { is_admin: true },
+    { query: { where: { group_id: group.id } } }
+  );
+
+module.exports.addGroup = (token, group) =>
+  me(token).then(user =>
+    user.groups().create(group).then(createdGroup =>
+      updateUserToAdmin(user, createdGroup).then(() => createdGroup)
+    )
+  );
+
 module.exports.findById = id =>
   new User({ id }).fetch({ require: true });
 

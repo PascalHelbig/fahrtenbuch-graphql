@@ -7,6 +7,7 @@ const PasswordType = require('./scalar/PasswordType');
 const EmailType = require('./scalar/EmailType');
 const BoatType = require('./types/BoatType');
 const BoatInputType = require('./inputTypes/BoatInputType');
+const GroupInputType = require('./inputTypes/GroupInputType');
 const GroupType = require('./types/GroupType');
 
 const query = new GraphQLObjectType({
@@ -57,6 +58,14 @@ const mutation = new GraphQLObjectType({
         boat: { type: new GraphQLNonNull(BoatInputType) },
       },
       resolve: (parent, { token, boat }) => userController.addUserBoat(token, boat),
+    },
+    addGroup: {
+      type: GroupType,
+      args: {
+        token: { type: new GraphQLNonNull(GraphQLString) },
+        group: { type: new GraphQLNonNull(GroupInputType) },
+      },
+      resolve: (parent, { token, group }) => userController.addGroup(token, group),
     },
   },
 });
