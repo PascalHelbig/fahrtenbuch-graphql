@@ -9,6 +9,7 @@ const BoatType = require('./types/BoatType');
 const BoatInputType = require('./inputTypes/BoatInputType');
 const GroupInputType = require('./inputTypes/GroupInputType');
 const GroupType = require('./types/GroupType');
+const PublicGroupType = require('./types/PublicGroupType');
 
 const query = new GraphQLObjectType({
   name: 'RootQueryType',
@@ -25,7 +26,7 @@ const query = new GraphQLObjectType({
       resolve: (parent, { token }) => userController.me(token),
     },
     groups: {
-      type: new GraphQLList(GroupType),
+      type: new GraphQLList(PublicGroupType),
       resolve: () => groupController.all(),
     },
   },
