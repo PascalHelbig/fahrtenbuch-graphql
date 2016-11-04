@@ -4,6 +4,6 @@ module.exports = new GraphQLInputObjectType({
   name: 'GroupInputType',
   fields: {
     name: { type: new GraphQLNonNull(GraphQLString) },
-    isClub: { type: GraphQLBoolean },
+    is_club: { type: GraphQLBoolean },
   },
 });

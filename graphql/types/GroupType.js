@@ -10,7 +10,7 @@ module.exports = new GraphQLObjectType({
   fields: {
     id: globalIdField('Group'),
     name: { type: GraphQLString, resolve: group => group.get('name') },
-    isClub: { type: GraphQLBoolean, resolve: group => group.get('is_club') },
+    is_club: { type: GraphQLBoolean, resolve: group => group.get('is_club') },
     members: {
       description: 'A list of groups users',
       type: connectionDefinitions({ name: 'User', nodeType: UserType }).connectionType,
