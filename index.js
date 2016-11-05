@@ -13,6 +13,11 @@ app.get('/', (req, res) => res.send('Hello World!'));
 app.use('/graphql', graphqlHTTP({
   schema,
   graphiql: true,
+  formatError: error => ({
+    message: error.message,
+    locations: error.locations,
+    stack: error.stack,
+  }),
 }));
 
 app.listen(process.env.PORT, () => console.log(`Server is running on ${process.env.PORT}`));

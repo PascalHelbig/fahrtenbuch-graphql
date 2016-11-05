@@ -54,6 +54,25 @@ const User = bookshelf.model('User', {
 
   hidden: ['password', 'passwordResetToken', 'passwordResetExpires'],
 
+  availableBoats() {
+    return Boat.query(qb =>
+      qb.distinct()
+        .join('memberships')
+        .join('groups', 'groups.id', 'memberships.group_id')
+        .join('memberships as membersOfGroups', 'membersOfGroups.group_id', 'groups.id')
+        .where('memberships.user_id', this.get('id'))
+        .andWhere(function () {
+          this.where({
+            'boats.owner_id': bookshelf.knex.raw('membersOfGroups.user_id'),
+            'boats.owner_type': 'users',
+          }).orWhere({
+            'boats.owner_id': bookshelf.knex.raw('groups.id'),
+            'boats.owner_type': 'groups',
+          });
+        })
+    ).fetchAll({ withRelated: 'owner' });
+  },
+
   availableBoatsFromUser() {
     return Boat.query(qb =>
       qb.distinct()
@@ -62,7 +81,7 @@ const User = bookshelf.model('User', {
         .join('groups', 'memberships.group_id', 'groups.id')
         .join('memberships as m2', 'm2.group_id', 'groups.id')
         .where('m2.user_id', this.get('id'))
-    ).fetchAll();
+    ).fetchAll({ withRelated: 'owner' });
   },
 
   availableBoatsFromGroups() {
@@ -71,7 +90,7 @@ const User = bookshelf.model('User', {
         .join('memberships', 'memberships.group_id', 'groups.id')
         .where('boats.owner_type', 'groups')
         .where('memberships.user_id', this.get('id'))
-    ).fetchAll();
+    ).fetchAll({ withRelated: 'owner' });
   },
 
   // virtuals: {

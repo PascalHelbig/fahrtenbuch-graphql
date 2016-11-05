@@ -1,7 +1,8 @@
 const { GraphQLObjectType, GraphQLString, GraphQLList } = require('graphql');
 const { globalIdField, connectionDefinitions, connectionArgs, connectionFromPromisedArray } = require('graphql-relay');
 const EmailType = require('../scalar/EmailType');
-const BoatType = require('./BoatType');
+// const BoatInterface = require('../interfaces/BoatInterface');
+const BoatFromUserType = require('./BoatFromUserType');
 const userController = require('../../controllers/user');
 const { nodeInterface } = require('../relayNode');
 
@@ -12,15 +13,11 @@ module.exports = new GraphQLObjectType({
     id: globalIdField('User'),
     name: { type: GraphQLString, resolve: user => user.get('name') },
     email: { type: EmailType, resolve: user => user.get('email') },
-    availableBoatsFromUser: {
-      type: new GraphQLList(BoatType),
-      resolve: user => user.availableBoatsFromUser(user),
+    availableBoats: {
+      type: new GraphQLList(require('../interfaces/BoatInterface')),
+      resolve: user => user.availableBoats(),
     },
-    availableBoatsFromGroups: {
-      type: new GraphQLList(BoatType),
-      resolve: user => user.availableBoatsFromGroups(user),
-    },
-    boats: { type: new GraphQLList(BoatType), resolve: user => user.boats().fetch() },
+    boats: { type: new GraphQLList(BoatFromUserType), resolve: user => user.boats().fetch({ withRelated: ['owner'] }) },
     groups: {
       description: 'A list of users groups',
       // eslint-disable-next-line global-require
