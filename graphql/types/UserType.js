@@ -12,6 +12,14 @@ module.exports = new GraphQLObjectType({
     id: globalIdField('User'),
     name: { type: GraphQLString, resolve: user => user.get('name') },
     email: { type: EmailType, resolve: user => user.get('email') },
+    availableBoatsFromUser: {
+      type: new GraphQLList(BoatType),
+      resolve: user => user.availableBoatsFromUser(user),
+    },
+    availableBoatsFromGroups: {
+      type: new GraphQLList(BoatType),
+      resolve: user => user.availableBoatsFromGroups(user),
+    },
     boats: { type: new GraphQLList(BoatType), resolve: user => user.boats().fetch() },
     groups: {
       description: 'A list of users groups',

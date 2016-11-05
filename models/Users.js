@@ -2,7 +2,7 @@
 const bcrypt = require('bcrypt-nodejs');
 const bookshelf = require('../config/bookshelf');
 const Promise = require('bluebird');
-require('./Boat');
+const Boat = require('./Boat');
 require('./Group');
 // const Groups = require('./Group');
 // require('./Participation');
@@ -53,6 +53,26 @@ const User = bookshelf.model('User', {
   },
 
   hidden: ['password', 'passwordResetToken', 'passwordResetExpires'],
+
+  availableBoatsFromUser() {
+    return Boat.query(qb =>
+      qb.distinct()
+        .join('users', 'boats.owner_id', 'users.id').where('boats.owner_type', 'users')
+        .join('memberships', 'users.id', 'memberships.user_id')
+        .join('groups', 'memberships.group_id', 'groups.id')
+        .join('memberships as m2', 'm2.group_id', 'groups.id')
+        .where('m2.user_id', this.get('id'))
+    ).fetchAll();
+  },
+
+  availableBoatsFromGroups() {
+    return Boat.query(qb =>
+      qb.join('groups', 'groups.id', 'boats.owner_id')
+        .join('memberships', 'memberships.group_id', 'groups.id')
+        .where('boats.owner_type', 'groups')
+        .where('memberships.user_id', this.get('id'))
+    ).fetchAll();
+  },
 
   // virtuals: {
   //   gravatar: function() {
