@@ -6,6 +6,7 @@ const LoggedInUser = require('./LoggedInUserType').resolver;
 const Group = require('./GroupType').resolver;
 const User = require('./UserType').resolver;
 const BoatFromUser = require('./BoatFromUserType').resolver;
+const BoatFromGroup = require('./BoatFromGroupType').resolver;
 
 module.exports = {
   Query: {
@@ -22,4 +23,5 @@ module.exports = {
   Group,
   User,
   BoatFromUser,
+  BoatFromGroup,
 };

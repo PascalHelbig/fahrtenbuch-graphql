@@ -9,4 +9,7 @@ module.exports.findById = id =>
 module.exports.getMembers = group =>
   group.members().fetch();
 
+module.exports.getBoats = group =>
+  group.boats().fetch({ withRelated: 'owner' });
+
 module.exports.instanceof = group => group instanceof Group;
