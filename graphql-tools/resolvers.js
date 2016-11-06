@@ -5,8 +5,8 @@ const Login = require('./LoginType').resolver;
 const LoggedInUser = require('./LoggedInUserType').resolver;
 const Group = require('./GroupType').resolver;
 const User = require('./UserType').resolver;
-const BoatFromUser = require('./BoatFromUserType').resolver;
-const BoatFromGroup = require('./BoatFromGroupType').resolver;
+const Boat = require('./BoatType').resolver;
+const Owner = require('./OwnerInterface').resolver;
 
 module.exports = {
   Query: {
@@ -22,6 +22,6 @@ module.exports = {
   LoggedInUser,
   Group,
   User,
-  BoatFromUser,
-  BoatFromGroup,
+  Boat,
+  Owner,
 };

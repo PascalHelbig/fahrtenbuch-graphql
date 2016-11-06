@@ -1,10 +1,10 @@
-const UserType = require('./UserType').schema;
+const OwnerInterface = require('./OwnerInterface').schema;
 
-const BoatFromUserType = `
-  type BoatFromUser {
+const BoatType = `
+  type Boat {
     id: ID!
     name: String
-    owner: User!
+    owner: Owner
   }
 `;
 
@@ -13,6 +13,5 @@ const resolver = {
   name: boat => boat.get('name'),
   owner: boat => boat.related('owner'),
 };
-
-module.exports.schema = () => [BoatFromUserType, UserType];
+module.exports.schema = () => [BoatType, OwnerInterface];
 module.exports.resolver = resolver;

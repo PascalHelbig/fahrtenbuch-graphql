@@ -1,5 +1,7 @@
+const OwnerInterface = require('./OwnerInterface').schema;
+
 const UserType = `
-  type User {
+  type User implements Owner {
     id: ID!
     name: String
   }
@@ -10,5 +12,5 @@ const resolver = {
   name: user => user.get('name'),
 };
 
-module.exports.schema = () => [UserType];
+module.exports.schema = () => [UserType, OwnerInterface];
 module.exports.resolver = resolver;

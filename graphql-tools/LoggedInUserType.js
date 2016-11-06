@@ -1,5 +1,5 @@
 const GroupType = require('./GroupType').schema;
-const BoatFromUserType = require('./BoatFromUserType').schema;
+const BoatType = require('./BoatType').schema;
 const userController = require('../controllers/user');
 
 const LoggedInUserType = `
@@ -8,7 +8,7 @@ const LoggedInUserType = `
     email: String!
     name: String
     groups: [Group]!
-    boats: [BoatFromUser]!
+    boats: [Boat]!
   }
 `;
 
@@ -20,5 +20,5 @@ const resolver = {
   boats: user => userController.getBoats(user),
 };
 
-module.exports.schema = () => [LoggedInUserType, GroupType, BoatFromUserType];
+module.exports.schema = () => [LoggedInUserType, GroupType, BoatType];
 module.exports.resolver = resolver;
