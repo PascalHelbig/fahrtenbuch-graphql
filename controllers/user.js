@@ -67,4 +67,7 @@ module.exports.findById = id =>
 module.exports.getGroups = user =>
   user.groups().fetch();
 
+module.exports.getBoats = user =>
+  user.boats().fetch({ withRelated: 'owner' });
+
 module.exports.instanceof = group => group instanceof User;
