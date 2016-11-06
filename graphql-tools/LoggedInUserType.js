@@ -9,6 +9,7 @@ const LoggedInUserType = `
     name: String
     groups: [Group]!
     boats: [Boat]!
+    availableBoats: [Boat]!
   }
 `;
 
@@ -18,6 +19,7 @@ const resolver = {
   name: user => user.get('name'),
   groups: user => userController.getGroups(user),
   boats: user => userController.getBoats(user),
+  availableBoats: user => user.availableBoats(),
 };
 
 module.exports.schema = () => [LoggedInUserType, GroupType, BoatType];
