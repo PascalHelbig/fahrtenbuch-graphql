@@ -3,7 +3,7 @@ const PublicGroup = require('./PublicGroupType').resolver;
 
 module.exports = {
   Query: {
-    groups: () => groupController.all(),
+    groups: groupController.all,
   },
   PublicGroup,
 };
