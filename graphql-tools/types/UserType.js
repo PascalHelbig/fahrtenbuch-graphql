@@ -1,4 +1,4 @@
-const OwnerInterface = require('./OwnerInterface').schema;
+const OwnerInterface = require('./../interfaces/OwnerInterface').schema;
 
 const UserType = `
   type User implements Owner {

@@ -1,14 +1,14 @@
 const groupController = require('../controllers/group');
 const userController = require('../controllers/user');
-const PublicGroup = require('./PublicGroupType').resolver;
-const Login = require('./LoginType').resolver;
-const LoggedInUser = require('./LoggedInUserType').resolver;
-const Group = require('./GroupType').resolver;
-const User = require('./UserType').resolver;
-const Boat = require('./BoatType').resolver;
-const Owner = require('./OwnerInterface').resolver;
-const Password = require('./PasswordScalar').resolver;
-const Email = require('./EmailScalar').resolver;
+const PublicGroup = require('./types/PublicGroupType').resolver;
+const Login = require('./types/LoginType').resolver;
+const LoggedInUser = require('./types/LoggedInUserType').resolver;
+const Group = require('./types/GroupType').resolver;
+const User = require('./types/UserType').resolver;
+const Boat = require('./types/BoatType').resolver;
+const Owner = require('./interfaces/OwnerInterface').resolver;
+const Password = require('./scalars/PasswordScalar').resolver;
+const Email = require('./scalars/EmailScalar').resolver;
 
 module.exports = {
   Query: {

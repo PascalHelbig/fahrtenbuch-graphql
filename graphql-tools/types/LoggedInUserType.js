@@ -1,6 +1,6 @@
 const GroupType = require('./GroupType').schema;
 const BoatType = require('./BoatType').schema;
-const userController = require('../controllers/user');
+const userController = require('../../controllers/user');
 
 const LoggedInUserType = `
   type LoggedInUser {

@@ -1,11 +1,11 @@
 const { makeExecutableSchema } = require('graphql-tools');
-const PublicGroupType = require('./PublicGroupType').schema;
-const LoginType = require('./LoginType').schema;
-const LoggedInUserType = require('./LoggedInUserType').schema;
-const PasswordScalar = require('./PasswordScalar').schema;
-const EmailScalar = require('./EmailScalar').schema;
-const GroupType = require('./GroupType').schema;
-const GroupInput = require('./GroupInput').schema;
+const PublicGroupType = require('./types/PublicGroupType').schema;
+const LoginType = require('./types/LoginType').schema;
+const LoggedInUserType = require('./types/LoggedInUserType').schema;
+const PasswordScalar = require('./scalars/PasswordScalar').schema;
+const EmailScalar = require('./scalars/EmailScalar').schema;
+const GroupType = require('./types/GroupType').schema;
+const GroupInput = require('./inputs/GroupInput').schema;
 const resolvers = require('./resolvers');
 
 const Query = `
