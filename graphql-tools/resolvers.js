@@ -9,6 +9,7 @@ module.exports = {
   },
   Mutation: {
     login: (root, { email, password }) => userController.login(email, password),
+    signup: (root, user) => userController.signup(user),
   },
   PublicGroup,
   LoggedInUser,

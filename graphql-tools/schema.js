@@ -15,6 +15,11 @@ const Mutation = `
       email: String!
       password: String!
     ): LoggedInUser
+    
+    signup(
+      email: String!
+      password: String!
+    ): LoggedInUser
   }
 `;
 
