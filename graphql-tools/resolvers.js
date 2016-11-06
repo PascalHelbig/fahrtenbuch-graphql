@@ -3,6 +3,7 @@ const userController = require('../controllers/user');
 const PublicGroup = require('./PublicGroupType').resolver;
 const Login = require('./LoginType').resolver;
 const LoggedInUser = require('./LoggedInUserType').resolver;
+const Group = require('./GroupType').resolver;
 
 module.exports = {
   Query: {
@@ -16,4 +17,5 @@ module.exports = {
   PublicGroup,
   Login,
   LoggedInUser,
+  Group,
 };
