@@ -1,11 +1,13 @@
 const { makeExecutableSchema } = require('graphql-tools');
 const PublicGroupType = require('./PublicGroupType').schema;
+const LoginType = require('./LoginType').schema;
 const LoggedInUserType = require('./LoggedInUserType').schema;
 const resolvers = require('./resolvers');
 
 const Query = `
   type Query {
     groups: [PublicGroup]
+    me(token: String!): LoggedInUser
   }
 `;
 
@@ -14,12 +16,12 @@ const Mutation = `
     login (
       email: String!
       password: String!
-    ): LoggedInUser
+    ): Login
     
     signup(
       email: String!
       password: String!
-    ): LoggedInUser
+    ): Login
   }
 `;
 
@@ -31,6 +33,6 @@ const SchemaDefinition = `
 `;
 
 module.exports = makeExecutableSchema({
-  typeDefs: [SchemaDefinition, Query, Mutation, PublicGroupType, LoggedInUserType],
+  typeDefs: [SchemaDefinition, Query, Mutation, PublicGroupType, LoggedInUserType, LoginType],
   resolvers,
 });
