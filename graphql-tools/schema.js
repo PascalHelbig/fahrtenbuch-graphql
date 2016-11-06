@@ -4,6 +4,8 @@ const LoginType = require('./LoginType').schema;
 const LoggedInUserType = require('./LoggedInUserType').schema;
 const PasswordScalar = require('./PasswordScalar').schema;
 const EmailScalar = require('./EmailScalar').schema;
+const GroupType = require('./GroupType').schema;
+const GroupInput = require('./GroupInput').schema;
 const resolvers = require('./resolvers');
 
 const Query = `
@@ -24,6 +26,11 @@ const Mutation = `
       email: Email!
       password: Password!
     ): Login
+    
+    addGroup(
+      token: String!
+      group: GroupInput!
+    ): Group
   }
 `;
 
@@ -36,6 +43,6 @@ const SchemaDefinition = `
 
 module.exports = makeExecutableSchema({
   typeDefs: [SchemaDefinition, Query, Mutation, PublicGroupType, LoggedInUserType, LoginType,
-    PasswordScalar, EmailScalar],
+    PasswordScalar, EmailScalar, GroupInput, GroupType],
   resolvers,
 });
