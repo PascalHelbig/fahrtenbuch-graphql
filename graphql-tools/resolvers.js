@@ -7,6 +7,8 @@ const Group = require('./GroupType').resolver;
 const User = require('./UserType').resolver;
 const Boat = require('./BoatType').resolver;
 const Owner = require('./OwnerInterface').resolver;
+const Password = require('./PasswordScalar').resolver;
+const Email = require('./EmailScalar').resolver;
 
 module.exports = {
   Query: {
@@ -24,4 +26,6 @@ module.exports = {
   User,
   Boat,
   Owner,
+  Password,
+  Email,
 };
