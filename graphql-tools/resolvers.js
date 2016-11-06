@@ -4,6 +4,7 @@ const PublicGroup = require('./PublicGroupType').resolver;
 const Login = require('./LoginType').resolver;
 const LoggedInUser = require('./LoggedInUserType').resolver;
 const Group = require('./GroupType').resolver;
+const User = require('./UserType').resolver;
 
 module.exports = {
   Query: {
@@ -18,4 +19,5 @@ module.exports = {
   Login,
   LoggedInUser,
   Group,
+  User,
 };
