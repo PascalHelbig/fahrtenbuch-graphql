@@ -1,24 +1,25 @@
-const { GraphQLObjectType, GraphQLString, GraphQLBoolean } = require('graphql');
-const { globalIdField, connectionDefinitions, connectionFromPromisedArray, connectionArgs } = require('graphql-relay');
-const UserType = require('./UserType');
-const groupController = require('../../controllers/group');
-const { nodeInterface } = require('../relayNode');
+const UserType = require('./UserType').schema;
+const BoatType = require('./BoatType').schema;
+const OwnerInterface = require('./../interfaces/OwnerInterface').schema;
 
-module.exports = new GraphQLObjectType({
-  name: 'Group',
-  isTypeOf: obj => groupController.instanceof(obj),
-  fields: {
-    id: globalIdField('Group'),
-    name: { type: GraphQLString, resolve: group => group.get('name') },
-    is_club: { type: GraphQLBoolean, resolve: group => group.get('is_club') },
-    is_admin: { type: GraphQLBoolean, resolve: group => group.isAdmin() },
-    members: {
-      description: 'A list of groups users',
-      type: connectionDefinitions({ name: 'User', nodeType: UserType }).connectionType,
-      args: connectionArgs,
-      resolve: (group, args) =>
-        connectionFromPromisedArray(groupController.getMembers(group), args),
-    },
-  },
-  interfaces: [nodeInterface],
-});
+const groupController = require('../../controllers/group');
+
+const GroupType = `
+  type Group implements Owner {
+    id: ID!
+    name: String!
+    is_club: Boolean!
+    members: [User]!
+    boats: [Boat]!
+  }
+`;
+
+const resolver = {
+  id: group => group.get('id'),
+  name: group => group.get('name'),
+  is_club: group => group.get('is_club'),
+  members: group => groupController.getMembers(group),
+  boats: group => groupController.getBoats(group),
+};
+module.exports.schema = () => [GroupType, UserType, BoatType, OwnerInterface];
+module.exports.resolver = resolver;

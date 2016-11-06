@@ -1,10 +1,16 @@
-const { GraphQLObjectType, GraphQLString } = require('graphql');
-const UserType = require('./UserType');
+const LoggedInUserType = require('./LoggedInUserType');
 
-module.exports = new GraphQLObjectType({
-  name: 'LoginType',
-  fields: {
-    token: { type: GraphQLString },
-    user: { type: UserType },
-  },
-});
+const LoginType = `
+  type Login {
+    user: LoggedInUser!
+    token: String!
+  }
+`;
+
+const resolver = {
+  user: login => login.user,
+  token: login => login.token,
+};
+
+module.exports.schema = () => [LoginType, LoggedInUserType.schema];
+module.exports.resolver = resolver;

@@ -1,79 +1,48 @@
-const { GraphQLSchema, GraphQLObjectType, GraphQLString, GraphQLNonNull, GraphQLList } = require('graphql');
-const userController = require('../controllers/user');
-const groupController = require('../controllers/group');
-const LoginType = require('./types/LoginType');
-const UserType = require('./types/UserType');
-const PasswordType = require('./scalar/PasswordType');
-const EmailType = require('./scalar/EmailType');
-const BoatType = require('./types/BoatFromUserType');
-const BoatInputType = require('./inputTypes/BoatInputType');
-const GroupInputType = require('./inputTypes/GroupInputType');
-const GroupType = require('./types/GroupType');
-const PublicGroupType = require('./types/PublicGroupType');
+const { makeExecutableSchema } = require('graphql-tools');
+const PublicGroupType = require('./types/PublicGroupType').schema;
+const LoginType = require('./types/LoginType').schema;
+const LoggedInUserType = require('./types/LoggedInUserType').schema;
+const PasswordScalar = require('./scalars/PasswordScalar').schema;
+const EmailScalar = require('./scalars/EmailScalar').schema;
+const GroupType = require('./types/GroupType').schema;
+const GroupInput = require('./inputs/GroupInput').schema;
+const resolvers = require('./resolvers');
 
-const query = new GraphQLObjectType({
-  name: 'RootQueryType',
-  fields: {
-    hello: {
-      type: GraphQLString,
-      resolve: () => 'Hello World',
-    },
-    me: {
-      type: UserType,
-      args: {
-        token: { type: new GraphQLNonNull(GraphQLString) },
-      },
-      resolve: (parent, { token }) => userController.me(token),
-    },
-    groups: {
-      type: new GraphQLList(PublicGroupType),
-      resolve: () => groupController.all(),
-    },
-  },
+const Query = `
+  type Query {
+    groups: [PublicGroup]
+    me(token: String!): LoggedInUser
+  }
+`;
+
+const Mutation = `
+  type Mutation {
+    login (
+      email: Email!
+      password: Password!
+    ): Login
+    
+    signup(
+      email: Email!
+      password: Password!
+    ): Login
+    
+    addGroup(
+      token: String!
+      group: GroupInput!
+    ): Group
+  }
+`;
+
+const SchemaDefinition = `
+  schema {
+    query: Query
+    mutation: Mutation
+  }
+`;
+
+module.exports = makeExecutableSchema({
+  typeDefs: [SchemaDefinition, Query, Mutation, PublicGroupType, LoggedInUserType, LoginType,
+    PasswordScalar, EmailScalar, GroupInput, GroupType],
+  resolvers,
 });
-
-const mutation = new GraphQLObjectType({
-  name: 'Mutations',
-  fields: {
-    signup: {
-      type: LoginType,
-      args: {
-        email: { type: new GraphQLNonNull(EmailType) },
-        password: { type: new GraphQLNonNull(PasswordType) },
-        name: { type: GraphQLString },
-      },
-      resolve: (value, user) => userController.signup(user),
-    },
-    login: {
-      type: LoginType,
-      args: {
-        email: { type: new GraphQLNonNull(EmailType) },
-        password: { type: new GraphQLNonNull(PasswordType) },
-      },
-      resolve: (parent, { email, password }) => userController.login(email, password),
-    },
-    addUserBoat: {
-      type: BoatType,
-      args: {
-        token: { type: new GraphQLNonNull(GraphQLString) },
-        boat: { type: new GraphQLNonNull(BoatInputType) },
-      },
-      resolve: (parent, { token, boat }) => userController.addUserBoat(token, boat),
-    },
-    addGroup: {
-      type: GroupType,
-      args: {
-        token: { type: new GraphQLNonNull(GraphQLString) },
-        group: { type: new GraphQLNonNull(GroupInputType) },
-      },
-      resolve: (parent, { token, group }) => userController.addGroup(token, group),
-    },
-  },
-});
-
-const schema = new GraphQLSchema({
-  query,
-  mutation,
-});
-
-module.exports = schema;
