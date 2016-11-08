@@ -6,6 +6,8 @@ const PasswordScalar = require('./scalars/PasswordScalar').schema;
 const EmailScalar = require('./scalars/EmailScalar').schema;
 const GroupType = require('./types/GroupType').schema;
 const GroupInput = require('./inputs/GroupInput').schema;
+const BoatType = require('./types/BoatType').schema;
+const BoatInput = require('./inputs/BoatInput').schema;
 const resolvers = require('./resolvers');
 
 const Query = `
@@ -31,6 +33,11 @@ const Mutation = `
       token: String!
       group: GroupInput!
     ): Group
+    
+    addUserBoat(
+      token: String!
+      boat: BoatInput!
+    ): Boat
   }
 `;
 
@@ -43,6 +50,6 @@ const SchemaDefinition = `
 
 module.exports = makeExecutableSchema({
   typeDefs: [SchemaDefinition, Query, Mutation, PublicGroupType, LoggedInUserType, LoginType,
-    PasswordScalar, EmailScalar, GroupInput, GroupType],
+    PasswordScalar, EmailScalar, GroupInput, GroupType, BoatType, BoatInput],
   resolvers,
 });

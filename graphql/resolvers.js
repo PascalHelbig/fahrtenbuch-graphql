@@ -19,6 +19,7 @@ module.exports = {
     login: (root, { email, password }) => userController.login(email, password),
     signup: (root, user) => userController.signup(user),
     addGroup: (root, { token, group }) => userController.addGroup(token, group),
+    addUserBoat: (root, { token, boat }) => userController.addUserBoat(token, boat),
   },
   PublicGroup,
   Login,
