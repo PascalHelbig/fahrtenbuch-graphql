@@ -1,6 +1,6 @@
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
-const User = require('../models/Users');
+const User = require('../models/User');
 
 const generateToken = (user) => {
   const payload = {

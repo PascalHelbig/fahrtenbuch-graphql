@@ -1,5 +1,5 @@
 const bookshelf = require('../config/bookshelf');
-require('./Users');
+require('./User');
 require('./Boat');
 
 module.exports = bookshelf.model('Group', {

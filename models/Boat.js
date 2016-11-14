@@ -1,5 +1,5 @@
 const bookshelf = require('../config/bookshelf');
-require('./Users');
+require('./User');
 require('./Group');
 
 const Boat = bookshelf.model('Boat', {
