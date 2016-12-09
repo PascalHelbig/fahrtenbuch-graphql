@@ -1,5 +1,6 @@
 const GroupType = require('./GroupType').schema;
 const BoatType = require('./BoatType').schema;
+const ParticipationType = require('./ParticipationType').schema;
 const userController = require('../../controllers/user');
 
 const LoggedInUserType = `
@@ -9,6 +10,7 @@ const LoggedInUserType = `
     groups: [Group]!
     boats: [Boat]!
     availableBoats: [Boat]!
+    participations: [Participation]
   }
 `;
 
@@ -18,7 +20,8 @@ const resolver = {
   groups: user => userController.getGroups(user),
   boats: user => userController.getBoats(user),
   availableBoats: user => user.availableBoats(),
+  participations: user => user.related('participations').fetch(),
 };
 
-module.exports.schema = () => [LoggedInUserType, GroupType, BoatType];
+module.exports.schema = () => [LoggedInUserType, GroupType, BoatType, ParticipationType];
 module.exports.resolver = resolver;

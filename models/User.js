@@ -20,9 +20,9 @@ const User = bookshelf.model('User', {
   createdEntries() {
     return this.hasMany('Entry', 'creator');
   },
-  // participations() {
-  //   return this.hasMany('Participation');
-  // },
+  participations() {
+    return this.hasMany('Participation');
+  },
 
   initialize() { this.on('saving', this.hashPassword, this); },
 
