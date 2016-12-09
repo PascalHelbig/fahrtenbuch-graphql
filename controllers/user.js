@@ -1,6 +1,8 @@
 const jwt = require('jsonwebtoken');
 const moment = require('moment');
+const Promise = require('bluebird');
 const User = require('../models/User');
+const entryController = require('./entry');
 
 const generateToken = (user) => {
   const payload = {
@@ -71,3 +73,17 @@ module.exports.getBoats = user =>
   user.boats().fetch({ withRelated: 'owner' });
 
 module.exports.instanceof = group => group instanceof User;
+
+const addParticipations = (entry, participations) =>
+  Promise.map(participations, participation =>
+    entry.related('participations').create(
+      { user_id: participation.user, boat_id: participation.boat }
+    )
+  );
+
+// ToDo: Add Transaction:
+module.exports.addEntry = (token, entry, participations) =>
+  me(token).then(user => user.createdEntries().create(entry))
+    .then(createdEntry => addParticipations(createdEntry, participations)
+      .then(() => entryController.getEntry(createdEntry.get('id')))
+    );

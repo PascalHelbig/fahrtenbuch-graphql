@@ -7,13 +7,13 @@ const Participation = bookshelf.model('Participation', {
   tableName: 'participations',
   hasTimestamps: true,
   user() {
-    return this.hasOne('user');
+    return this.belongsTo('User');
   },
   entry() {
-    return this.hasOne('entry');
+    return this.belongsTo('Entry');
   },
   boat() {
-    return this.hasOne('boat');
+    return this.belongsTo('Boat');
   },
 });
 

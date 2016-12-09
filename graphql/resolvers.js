@@ -9,6 +9,8 @@ const Boat = require('./types/BoatType').resolver;
 const Owner = require('./interfaces/OwnerInterface').resolver;
 const Password = require('./scalars/PasswordScalar').resolver;
 const Email = require('./scalars/EmailScalar').resolver;
+const Entry = require('./types/EntryType').resolver;
+const Participation = require('./types/ParticipationType').resolver;
 
 module.exports = {
   Query: {
@@ -20,6 +22,8 @@ module.exports = {
     signup: (root, user) => userController.signup(user),
     addGroup: (root, { token, group }) => userController.addGroup(token, group),
     addUserBoat: (root, { token, boat }) => userController.addUserBoat(token, boat),
+    addEntry: (root, { token, entry, participations }) =>
+      userController.addEntry(token, entry, participations),
   },
   PublicGroup,
   Login,
@@ -30,4 +34,6 @@ module.exports = {
   Owner,
   Password,
   Email,
+  Entry,
+  Participation,
 };

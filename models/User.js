@@ -4,8 +4,9 @@ const bookshelf = require('../config/bookshelf');
 const Promise = require('bluebird');
 const Boat = require('./Boat');
 require('./Group');
+require('./Entry');
 // const Groups = require('./Group');
-// require('./Participation');
+require('./Participation');
 
 const User = bookshelf.model('User', {
   tableName: 'users',
@@ -16,9 +17,9 @@ const User = bookshelf.model('User', {
   groups() {
     return this.belongsToMany('Group', 'memberships').withPivot(['is_admin']);
   },
-  // createdEntries() {
-  //   return this.hasMany('Entry', 'creator');
-  // },
+  createdEntries() {
+    return this.hasMany('Entry', 'creator');
+  },
   // participations() {
   //   return this.hasMany('Participation');
   // },

@@ -8,6 +8,9 @@ const GroupType = require('./types/GroupType').schema;
 const GroupInput = require('./inputs/GroupInput').schema;
 const BoatType = require('./types/BoatType').schema;
 const BoatInput = require('./inputs/BoatInput').schema;
+const EntryInput = require('./inputs/EntryInput').schema;
+const ParticipationInput = require('./inputs/ParticipationInput').schema;
+const EntryType = require('./types/EntryType').schema;
 const resolvers = require('./resolvers');
 
 const Query = `
@@ -38,6 +41,12 @@ const Mutation = `
       token: String!
       boat: BoatInput!
     ): Boat
+    
+    addEntry(
+      token: String!
+      entry: EntryInput!
+      participations: [ParticipationInput]!
+    ): Entry
   }
 `;
 
@@ -50,6 +59,7 @@ const SchemaDefinition = `
 
 module.exports = makeExecutableSchema({
   typeDefs: [SchemaDefinition, Query, Mutation, PublicGroupType, LoggedInUserType, LoginType,
-    PasswordScalar, EmailScalar, GroupInput, GroupType, BoatType, BoatInput],
+    PasswordScalar, EmailScalar, GroupInput, GroupType, BoatType, BoatInput, EntryInput,
+    ParticipationInput, EntryType],
   resolvers,
 });
