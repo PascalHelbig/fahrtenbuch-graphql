@@ -4,9 +4,8 @@ const userController = require('../../controllers/user');
 
 const LoggedInUserType = `
   type LoggedInUser {
-    id: ID!
+    user: User!
     email: String!
-    name: String
     groups: [Group]!
     boats: [Boat]!
     availableBoats: [Boat]!
@@ -14,9 +13,8 @@ const LoggedInUserType = `
 `;
 
 const resolver = {
-  id: user => user.get('id'),
+  user: user => user,
   email: user => user.get('email'),
-  name: user => user.get('name'),
   groups: user => userController.getGroups(user),
   boats: user => userController.getBoats(user),
   availableBoats: user => user.availableBoats(),
