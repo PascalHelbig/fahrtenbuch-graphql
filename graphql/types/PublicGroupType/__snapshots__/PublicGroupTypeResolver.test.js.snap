@@ -1,0 +1,29 @@
+exports[`test should get the id from model 1`] = `
+Object {
+  "data": Object {
+    "publicGroup": Object {
+      "id": "1337",
+    },
+  },
+}
+`;
+
+exports[`test should get the is_club from model 1`] = `
+Object {
+  "data": Object {
+    "publicGroup": Object {
+      "is_club": true,
+    },
+  },
+}
+`;
+
+exports[`test should get the name from model 1`] = `
+Object {
+  "data": Object {
+    "publicGroup": Object {
+      "name": "the name",
+    },
+  },
+}
+`;
