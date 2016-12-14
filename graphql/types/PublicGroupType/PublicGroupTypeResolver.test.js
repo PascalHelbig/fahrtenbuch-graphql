@@ -36,13 +36,13 @@ const testPropterty = (propterty, returnValue, getParameter) => {
 };
 
 it('should get the id from model', () =>
-  testPropterty('id', '1337', 'id')
+  testPropterty('id', '1337', 'id'),
 );
 
 it('should get the name from model', () =>
-  testPropterty('name', 'the name', 'name')
+  testPropterty('name', 'the name', 'name'),
 );
 
 it('should get the is_club from model', () =>
-  testPropterty('is_club', true, 'is_club')
+  testPropterty('is_club', true, 'is_club'),
 );

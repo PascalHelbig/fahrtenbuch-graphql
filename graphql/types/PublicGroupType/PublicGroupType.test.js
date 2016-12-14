@@ -25,6 +25,6 @@ it('has to be a valid schema', () => {
   `;
 
   return graphql(schema, query).then(result =>
-    expect(result).toMatchSnapshot()
+    expect(result).toMatchSnapshot(),
   );
 });
