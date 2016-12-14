@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm run jest & npm run eslint",
+    "test": "npm run jest && npm run eslint",
     "jest": "jest",
     "eslint": "eslint **/*.js",
     "start": "node index.js"
