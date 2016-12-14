@@ -1,6 +1,6 @@
 const groupController = require('../controllers/group');
 const userController = require('../controllers/user');
-const PublicGroup = require('./types/PublicGroupType').resolver;
+const PublicGroup = require('./types/PublicGroupType/PublicGroupTypeResolver');
 const Login = require('./types/LoginType').resolver;
 const LoggedInUser = require('./types/LoggedInUserType').resolver;
 const Group = require('./types/GroupType').resolver;
