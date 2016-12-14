@@ -3,15 +3,15 @@ const { graphql } = require('graphql');
 const PublicGroupType = require('./PublicGroupType');
 const PublicGroupTypeResolver = require('./PublicGroupTypeResolver');
 
-const SchemaDefinition = `
-  type Query {
-    publicGroup: PublicGroup
-  }
-  
-  schema { query: Query }`;
+const testPropterty = (propterty, returnValue, getParameter) => {
+  const SchemaDefinition = `
+    type Query {
+      publicGroup: PublicGroup
+    }
+    
+    schema { query: Query }`;
 
-it('should get the id from model', () => {
-  const get = jest.fn().mockReturnValue('1337');
+  const get = jest.fn().mockReturnValue(returnValue);
   const mockBookshelf = { get };
   const resolvers = {
     Query: {
@@ -24,63 +24,25 @@ it('should get the id from model', () => {
   const query = `
     query { 
       publicGroup {
-        id
+        ${propterty}
      }
     }
   `;
 
   return graphql(schema, query).then((result) => {
     expect(result).toMatchSnapshot();
-    expect(get).toHaveBeenCalledWith('id');
+    expect(get).toHaveBeenCalledWith(getParameter);
   });
-});
+};
 
-it('should get the name from model', () => {
-  const get = jest.fn().mockReturnValue('the name');
-  const mockBookshelf = { get };
-  const resolvers = {
-    Query: {
-      publicGroup: () => mockBookshelf,
-    },
-    PublicGroup: PublicGroupTypeResolver,
-  };
-  const schema = makeExecutableSchema({ typeDefs: [SchemaDefinition, PublicGroupType], resolvers });
+it('should get the id from model', () =>
+  testPropterty('id', '1337', 'id')
+);
 
-  const query = `
-    query { 
-      publicGroup {
-        name
-     }
-    }
-  `;
+it('should get the name from model', () =>
+  testPropterty('name', 'the name', 'name')
+);
 
-  return graphql(schema, query).then((result) => {
-    expect(result).toMatchSnapshot();
-    expect(get).toHaveBeenCalledWith('name');
-  });
-});
-
-it('should get the is_club from model', () => {
-  const get = jest.fn().mockReturnValue(true);
-  const mockBookshelf = { get };
-  const resolvers = {
-    Query: {
-      publicGroup: () => mockBookshelf,
-    },
-    PublicGroup: PublicGroupTypeResolver,
-  };
-  const schema = makeExecutableSchema({ typeDefs: [SchemaDefinition, PublicGroupType], resolvers });
-
-  const query = `
-    query { 
-      publicGroup {
-        is_club
-     }
-    }
-  `;
-
-  return graphql(schema, query).then((result) => {
-    expect(result).toMatchSnapshot();
-    expect(get).toHaveBeenCalledWith('is_club');
-  });
-});
+it('should get the is_club from model', () =>
+  testPropterty('is_club', true, 'is_club')
+);
