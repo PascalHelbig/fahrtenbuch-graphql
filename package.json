@@ -24,7 +24,7 @@
     "jsonwebtoken": "^7.1.9",
     "knex": "^0.12.2",
     "moment": "^2.15.0",
-    "mysql": "^2.11.1"
+    "mysql": "^2.12.0"
   },
   "devDependencies": {
     "eslint": "^3.7.0",
