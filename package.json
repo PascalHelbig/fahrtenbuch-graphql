@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "npm run jest && npm run eslint",
-    "coveralls": "jest --coverage && coveralls ./coverage/lcov.info",
+    "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
+    "coverage": "jest --coverage",
     "jest": "jest",
     "eslint": "eslint **/*.js",
     "start": "node index.js"
