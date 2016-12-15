@@ -22,7 +22,7 @@
     "graphql": "^0.8.2",
     "graphql-tools": "^0.8.0",
     "jsonwebtoken": "^7.1.9",
-    "knex": "^0.12.2",
+    "knex": "^0.12.6",
     "moment": "^2.15.0",
     "mysql": "^2.11.1"
   },
