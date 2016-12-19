@@ -37,7 +37,7 @@ module.exports.login = (email, password) =>
             throw new Error('Invalid email or password');
           }
           return { token: generateToken(user), user };
-        }),
+        })
     )
     .catch(User.NotFoundError, () => { throw new Error('Emailaddress not found'); });
 
@@ -53,14 +53,14 @@ module.exports.addUserBoat = (token, boat) =>
 const updateUserToAdmin = (user, group) =>
   user.groups().updatePivot(
     { is_admin: true },
-    { query: { where: { group_id: group.id } } },
+    { query: { where: { group_id: group.id } } }
   );
 
 module.exports.addGroup = (token, group) =>
   me(token).then(user =>
     user.groups().create(group).then(createdGroup =>
-      updateUserToAdmin(user, createdGroup).then(() => createdGroup),
-    ),
+      updateUserToAdmin(user, createdGroup).then(() => createdGroup)
+    )
   );
 
 module.exports.findById = id =>
@@ -77,13 +77,13 @@ module.exports.instanceof = group => group instanceof User;
 const addParticipations = (entry, participations) =>
   Promise.map(participations, participation =>
     entry.related('participations').create(
-      { user_id: participation.user, boat_id: participation.boat },
-    ),
+      { user_id: participation.user, boat_id: participation.boat }
+    )
   );
 
 // ToDo: Add Transaction:
 module.exports.addEntry = (token, entry, participations) =>
   me(token).then(user => user.createdEntries().create(entry))
     .then(createdEntry => addParticipations(createdEntry, participations)
-      .then(() => entryController.getEntry(createdEntry.get('id'))),
+      .then(() => entryController.getEntry(createdEntry.get('id')))
     );
