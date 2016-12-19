@@ -8,6 +8,7 @@
     "coveralls": "jest --coverage && cat ./coverage/lcov.info | coveralls",
     "coverage": "jest --coverage",
     "jest": "jest",
+    "jest-watch": "jest --watch",
     "eslint": "eslint **/*.js",
     "start": "node index.js"
   },
