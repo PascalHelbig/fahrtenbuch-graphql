@@ -1,4 +1,4 @@
-const LoggedInUserType = require('./LoggedInUserType');
+const LoggedInUserType = require('./LoggedInUserType/LoggedInUserType');
 
 const LoginType = `
   type Login {
@@ -12,5 +12,5 @@ const resolver = {
   token: login => login.token,
 };
 
-module.exports.schema = () => [LoginType, LoggedInUserType.schema];
+module.exports.schema = () => [LoginType, LoggedInUserType];
 module.exports.resolver = resolver;
