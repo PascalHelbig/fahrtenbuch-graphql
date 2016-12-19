@@ -1,0 +1,32 @@
+exports[`test should get the id from model 1`] = `
+Object {
+  "data": Object {
+    "boat": Object {
+      "id": "1337",
+    },
+  },
+}
+`;
+
+exports[`test should get the name from model 1`] = `
+Object {
+  "data": Object {
+    "boat": Object {
+      "name": "the name",
+    },
+  },
+}
+`;
+
+exports[`test should get the owner from model 1`] = `
+Object {
+  "data": Object {
+    "boat": Object {
+      "owner": null,
+    },
+  },
+  "errors": Array [
+    [GraphQLError: Generated Schema cannot use Interface or Union types for execution.],
+  ],
+}
+`;
