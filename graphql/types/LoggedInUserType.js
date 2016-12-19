@@ -1,4 +1,4 @@
-const GroupType = require('./GroupType').schema;
+const GroupType = require('./GroupType/GroupType');
 const BoatType = require('./BoatType/BoatType');
 const ParticipationType = require('./ParticipationType').schema;
 const userController = require('../../controllers/user');
