@@ -1,0 +1,51 @@
+exports[`test should get the boats from model 1`] = `
+Object {
+  "data": Object {
+    "group": null,
+  },
+  "errors": Array [
+    [GraphQLError: group.related(...).fetch is not a function],
+  ],
+}
+`;
+
+exports[`test should get the id from model 1`] = `
+Object {
+  "data": Object {
+    "group": Object {
+      "id": "1337",
+    },
+  },
+}
+`;
+
+exports[`test should get the is_club from model 1`] = `
+Object {
+  "data": Object {
+    "group": Object {
+      "is_club": true,
+    },
+  },
+}
+`;
+
+exports[`test should get the members from model 1`] = `
+Object {
+  "data": Object {
+    "group": null,
+  },
+  "errors": Array [
+    [GraphQLError: group.related(...).fetch is not a function],
+  ],
+}
+`;
+
+exports[`test should get the name from model 1`] = `
+Object {
+  "data": Object {
+    "group": Object {
+      "name": "the group name",
+    },
+  },
+}
+`;
