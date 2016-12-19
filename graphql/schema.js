@@ -10,7 +10,7 @@ const BoatType = require('./types/BoatType/BoatType');
 const BoatInput = require('./inputs/BoatInput').schema;
 const EntryInput = require('./inputs/EntryInput').schema;
 const ParticipationInput = require('./inputs/ParticipationInput').schema;
-const EntryType = require('./types/EntryType').schema;
+const EntryType = require('./types/EntryType/EntryType');
 const resolvers = require('./resolvers');
 
 const Query = `
