@@ -1,5 +1,5 @@
 const UserType = require('./UserType').schema;
-const BoatType = require('./BoatType').schema;
+const BoatType = require('./BoatType/BoatType');
 const OwnerInterface = require('./../interfaces/OwnerInterface').schema;
 
 const groupController = require('../../controllers/group');
