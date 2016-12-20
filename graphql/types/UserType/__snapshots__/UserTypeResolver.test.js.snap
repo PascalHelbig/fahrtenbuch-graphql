@@ -1,0 +1,19 @@
+exports[`test should get the id from model 1`] = `
+Object {
+  "data": Object {
+    "user": Object {
+      "id": "1337",
+    },
+  },
+}
+`;
+
+exports[`test should get the name from model 1`] = `
+Object {
+  "data": Object {
+    "user": Object {
+      "name": "users name",
+    },
+  },
+}
+`;
