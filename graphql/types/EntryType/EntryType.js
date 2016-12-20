@@ -3,7 +3,7 @@
 module.exports = () => [EntryType, UserType, ParticipationType];
 
 const UserType = require('./../UserType').schema;
-const ParticipationType = require('./../ParticipationType').schema;
+const ParticipationType = require('./../ParticipationType/ParticipationType');
 
 const EntryType = `
   type Entry {
