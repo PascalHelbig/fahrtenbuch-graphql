@@ -2,7 +2,7 @@
 // eslint-disable-next-line no-use-before-define
 module.exports = () => [ParticipationType, UserType, BoatType, EntryType];
 
-const UserType = require('./../UserType').schema;
+const UserType = require('./../UserType/UserType');
 const BoatType = require('./../BoatType/BoatType');
 const EntryType = require('./../EntryType/EntryType');
 

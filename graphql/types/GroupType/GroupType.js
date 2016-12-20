@@ -1,4 +1,4 @@
-const UserType = require('./../UserType').schema;
+const UserType = require('./../UserType/UserType');
 const BoatType = require('./../BoatType/BoatType');
 const OwnerInterface = require('./../../interfaces/OwnerInterface').schema;
 
