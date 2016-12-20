@@ -66,12 +66,6 @@ module.exports.addGroup = (token, group) =>
 module.exports.findById = id =>
   new User({ id }).fetch({ require: true });
 
-module.exports.getGroups = user =>
-  user.groups().fetch();
-
-module.exports.getBoats = user =>
-  user.boats().fetch({ withRelated: 'owner' });
-
 module.exports.instanceof = group => group instanceof User;
 
 const addParticipations = (entry, participations) =>
