@@ -1,0 +1,70 @@
+exports[`test should get the availableBoats from model 1`] = `
+Object {
+  "data": Object {
+    "loggedInUser": Object {
+      "availableBoats": Array [
+        Object {
+          "id": "boat id",
+        },
+      ],
+    },
+  },
+}
+`;
+
+exports[`test should get the boats from model 1`] = `
+Object {
+  "data": Object {
+    "loggedInUser": null,
+  },
+  "errors": Array [
+    [GraphQLError: user.related(...).fetch is not a function],
+  ],
+}
+`;
+
+exports[`test should get the email from model 1`] = `
+Object {
+  "data": Object {
+    "loggedInUser": Object {
+      "email": "test@example.com",
+    },
+  },
+}
+`;
+
+exports[`test should get the groups from model 1`] = `
+Object {
+  "data": Object {
+    "loggedInUser": null,
+  },
+  "errors": Array [
+    [GraphQLError: user.related(...).fetch is not a function],
+  ],
+}
+`;
+
+exports[`test should get the participations from model 1`] = `
+Object {
+  "data": Object {
+    "loggedInUser": Object {
+      "participations": null,
+    },
+  },
+  "errors": Array [
+    [GraphQLError: user.related(...).fetch is not a function],
+  ],
+}
+`;
+
+exports[`test should get the user from model 1`] = `
+Object {
+  "data": Object {
+    "loggedInUser": Object {
+      "user": Object {
+        "id": "1337",
+      },
+    },
+  },
+}
+`;

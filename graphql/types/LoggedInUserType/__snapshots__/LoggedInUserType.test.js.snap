@@ -1,0 +1,39 @@
+exports[`test has to be a valid schema 1`] = `
+Object {
+  "data": Object {
+    "availableBoats": Array [
+      Object {
+        "id": "1341",
+      },
+    ],
+    "boats": Array [
+      Object {
+        "id": "1340",
+      },
+      Object {
+        "id": "1341",
+      },
+    ],
+    "email": "email@example.com",
+    "groups": Array [
+      Object {
+        "id": "1338",
+      },
+      Object {
+        "id": "1339",
+      },
+    ],
+    "participations": Array [
+      Object {
+        "id": "1342",
+      },
+      Object {
+        "id": "1343",
+      },
+    ],
+    "user": Object {
+      "id": "1337",
+    },
+  },
+}
+`;
