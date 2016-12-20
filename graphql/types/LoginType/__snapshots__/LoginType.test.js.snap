@@ -1,0 +1,10 @@
+exports[`test has to be a valid schema 1`] = `
+Object {
+  "data": Object {
+    "token": "the token",
+    "user": Object {
+      "email": "test@example.com",
+    },
+  },
+}
+`;

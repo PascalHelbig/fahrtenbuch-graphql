@@ -1,0 +1,21 @@
+exports[`test should get the token from model 1`] = `
+Object {
+  "data": Object {
+    "login": Object {
+      "token": "the token",
+    },
+  },
+}
+`;
+
+exports[`test should get the user from model 1`] = `
+Object {
+  "data": Object {
+    "login": Object {
+      "user": Object {
+        "email": "test@example.com",
+      },
+    },
+  },
+}
+`;
