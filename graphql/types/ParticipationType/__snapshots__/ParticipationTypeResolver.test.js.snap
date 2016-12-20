@@ -1,0 +1,42 @@
+exports[`test should get the boat from model 1`] = `
+Object {
+  "data": Object {
+    "participation": null,
+  },
+  "errors": Array [
+    [GraphQLError: participation.related(...).fetch is not a function],
+  ],
+}
+`;
+
+exports[`test should get the entry from model 1`] = `
+Object {
+  "data": Object {
+    "participation": null,
+  },
+  "errors": Array [
+    [GraphQLError: participation.related(...).fetch is not a function],
+  ],
+}
+`;
+
+exports[`test should get the id from model 1`] = `
+Object {
+  "data": Object {
+    "participation": Object {
+      "id": "1337",
+    },
+  },
+}
+`;
+
+exports[`test should get the user from model 1`] = `
+Object {
+  "data": Object {
+    "participation": null,
+  },
+  "errors": Array [
+    [GraphQLError: participation.related(...).fetch is not a function],
+  ],
+}
+`;
