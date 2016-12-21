@@ -18,7 +18,7 @@ const testPassword = (password) => {
     resolvers,
   });
 
-  const query = `query { password (input: "${password}") }`;
+  const query = `query { password (input: ${password}) }`;
 
   return graphql(schema, query).then(result =>
     expect(result).toMatchSnapshot()
@@ -26,11 +26,11 @@ const testPassword = (password) => {
 };
 
 it('should except a password with 5 chars', () =>
-  testPassword('12345')
+  testPassword('"12345"')
 );
 
 it('should not except a password with less then 5 chars', () =>
-  testPassword('1234')
+  testPassword('"1234"')
 );
 
 it('should not except a password with more than 254 chars', () => {
@@ -38,5 +38,9 @@ it('should not except a password with more than 254 chars', () => {
   for (let i = 0; i < 255; i += 1) {
     password += 'a';
   }
-  return testPassword(password);
+  return testPassword(`"${password}"`);
 });
+
+it('should not except a password with the type int', () =>
+  testPassword(12345)
+);
