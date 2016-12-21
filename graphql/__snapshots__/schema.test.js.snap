@@ -1,0 +1,587 @@
+exports[`test should matches all types 1`] = `
+Object {
+  "data": Object {
+    "__schema": Object {
+      "types": Array [
+        Object {
+          "fields": Array [
+            Object {
+              "name": "groups",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "me",
+              "type": Object {
+                "name": "LoggedInUser",
+              },
+            },
+          ],
+          "name": "Query",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "id",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "is_club",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "PublicGroup",
+        },
+        Object {
+          "fields": null,
+          "name": "ID",
+        },
+        Object {
+          "fields": null,
+          "name": "String",
+        },
+        Object {
+          "fields": null,
+          "name": "Boolean",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "user",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "email",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "groups",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "boats",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "availableBoats",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "participations",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "LoggedInUser",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "id",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": "String",
+              },
+            },
+          ],
+          "name": "User",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "id",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": "String",
+              },
+            },
+          ],
+          "name": "Owner",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "id",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "is_club",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "members",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "boats",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "Group",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "id",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": "String",
+              },
+            },
+            Object {
+              "name": "owner",
+              "type": Object {
+                "name": "Owner",
+              },
+            },
+          ],
+          "name": "Boat",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "id",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "user",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "boat",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "entry",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "Participation",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "id",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "text",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "start",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "end",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "sailed",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "motor",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "creator",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "participations",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "Entry",
+        },
+        Object {
+          "fields": null,
+          "name": "Int",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "login",
+              "type": Object {
+                "name": "Login",
+              },
+            },
+            Object {
+              "name": "signup",
+              "type": Object {
+                "name": "Login",
+              },
+            },
+            Object {
+              "name": "addGroup",
+              "type": Object {
+                "name": "Group",
+              },
+            },
+            Object {
+              "name": "addUserBoat",
+              "type": Object {
+                "name": "Boat",
+              },
+            },
+            Object {
+              "name": "addEntry",
+              "type": Object {
+                "name": "Entry",
+              },
+            },
+          ],
+          "name": "Mutation",
+        },
+        Object {
+          "fields": null,
+          "name": "Email",
+        },
+        Object {
+          "fields": null,
+          "name": "Password",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "user",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "token",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "Login",
+        },
+        Object {
+          "fields": null,
+          "name": "GroupInput",
+        },
+        Object {
+          "fields": null,
+          "name": "BoatInput",
+        },
+        Object {
+          "fields": null,
+          "name": "EntryInput",
+        },
+        Object {
+          "fields": null,
+          "name": "ParticipationInput",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "types",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "queryType",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "mutationType",
+              "type": Object {
+                "name": "__Type",
+              },
+            },
+            Object {
+              "name": "subscriptionType",
+              "type": Object {
+                "name": "__Type",
+              },
+            },
+            Object {
+              "name": "directives",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "__Schema",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "kind",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": "String",
+              },
+            },
+            Object {
+              "name": "description",
+              "type": Object {
+                "name": "String",
+              },
+            },
+            Object {
+              "name": "fields",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "interfaces",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "possibleTypes",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "enumValues",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "inputFields",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "ofType",
+              "type": Object {
+                "name": "__Type",
+              },
+            },
+          ],
+          "name": "__Type",
+        },
+        Object {
+          "fields": null,
+          "name": "__TypeKind",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "description",
+              "type": Object {
+                "name": "String",
+              },
+            },
+            Object {
+              "name": "args",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "type",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "isDeprecated",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "deprecationReason",
+              "type": Object {
+                "name": "String",
+              },
+            },
+          ],
+          "name": "__Field",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "description",
+              "type": Object {
+                "name": "String",
+              },
+            },
+            Object {
+              "name": "type",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "defaultValue",
+              "type": Object {
+                "name": "String",
+              },
+            },
+          ],
+          "name": "__InputValue",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "description",
+              "type": Object {
+                "name": "String",
+              },
+            },
+            Object {
+              "name": "isDeprecated",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "deprecationReason",
+              "type": Object {
+                "name": "String",
+              },
+            },
+          ],
+          "name": "__EnumValue",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "description",
+              "type": Object {
+                "name": "String",
+              },
+            },
+            Object {
+              "name": "locations",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "args",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "__Directive",
+        },
+        Object {
+          "fields": null,
+          "name": "__DirectiveLocation",
+        },
+      ],
+    },
+  },
+}
+`;

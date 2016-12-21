@@ -1,9 +1,6 @@
 const { makeExecutableSchema } = require('graphql-tools');
 const PublicGroupType = require('./types/PublicGroupType/PublicGroupType');
-const LoginType = require('./types/LoginType/LoginType');
 const LoggedInUserType = require('./types/LoggedInUserType/LoggedInUserType');
-const PasswordScalar = require('./scalars/PasswordScalar').schema;
-const EmailScalar = require('./scalars/EmailScalar').schema;
 const GroupType = require('./types/GroupType/GroupType');
 const GroupInput = require('./inputs/GroupInput').schema;
 const BoatType = require('./types/BoatType/BoatType');
@@ -11,6 +8,7 @@ const BoatInput = require('./inputs/BoatInput').schema;
 const EntryInput = require('./inputs/EntryInput').schema;
 const ParticipationInput = require('./inputs/ParticipationInput').schema;
 const EntryType = require('./types/EntryType/EntryType');
+const LoginMutation = require('./mutations/LoginMutation');
 const resolvers = require('./resolvers');
 
 const Query = `
@@ -22,10 +20,7 @@ const Query = `
 
 const Mutation = `
   type Mutation {
-    login (
-      email: Email!
-      password: Password!
-    ): Login
+    ${LoginMutation.schema}
     
     signup(
       email: Email!
@@ -58,8 +53,8 @@ const SchemaDefinition = `
 `;
 
 module.exports = makeExecutableSchema({
-  typeDefs: [SchemaDefinition, Query, Mutation, PublicGroupType, LoggedInUserType, LoginType,
-    PasswordScalar, EmailScalar, GroupInput, GroupType, BoatType, BoatInput, EntryInput,
-    ParticipationInput, EntryType],
+  typeDefs: [SchemaDefinition, Query, Mutation, PublicGroupType, LoggedInUserType,
+    GroupInput, GroupType, BoatType, BoatInput, EntryInput,
+    ParticipationInput, EntryType, LoginMutation.usedTypes],
   resolvers,
 });
