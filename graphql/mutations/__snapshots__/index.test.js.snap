@@ -1,0 +1,85 @@
+exports[`test should list all mutations 1`] = `
+Object {
+  "data": Object {
+    "__schema": Object {
+      "mutationType": Object {
+        "fields": Array [
+          Object {
+            "args": Array [
+              Object {
+                "name": "email",
+              },
+              Object {
+                "name": "password",
+              },
+            ],
+            "name": "login",
+            "type": Object {
+              "name": "Login",
+            },
+          },
+          Object {
+            "args": Array [
+              Object {
+                "name": "email",
+              },
+              Object {
+                "name": "password",
+              },
+            ],
+            "name": "signup",
+            "type": Object {
+              "name": "Login",
+            },
+          },
+          Object {
+            "args": Array [
+              Object {
+                "name": "token",
+              },
+              Object {
+                "name": "group",
+              },
+            ],
+            "name": "addGroup",
+            "type": Object {
+              "name": "Group",
+            },
+          },
+          Object {
+            "args": Array [
+              Object {
+                "name": "token",
+              },
+              Object {
+                "name": "boat",
+              },
+            ],
+            "name": "addUserBoat",
+            "type": Object {
+              "name": "Boat",
+            },
+          },
+          Object {
+            "args": Array [
+              Object {
+                "name": "token",
+              },
+              Object {
+                "name": "entry",
+              },
+              Object {
+                "name": "participations",
+              },
+            ],
+            "name": "addEntry",
+            "type": Object {
+              "name": "Entry",
+            },
+          },
+        ],
+      },
+    },
+  },
+}
+`;
