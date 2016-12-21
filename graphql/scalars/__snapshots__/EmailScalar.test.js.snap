@@ -1,0 +1,39 @@
+exports[`test should except a valid email addresse 1`] = `
+Object {
+  "data": Object {
+    "email": "test@test.de",
+  },
+}
+`;
+
+exports[`test should ignore invalid email addresses 1`] = `
+Object {
+  "errors": Array [
+    [GraphQLError: Query error: Not a valid Email: ],
+  ],
+}
+`;
+
+exports[`test should ignore invalid email addresses 2`] = `
+Object {
+  "errors": Array [
+    [GraphQLError: Query error: Not a valid Email: ],
+  ],
+}
+`;
+
+exports[`test should ignore invalid email addresses 3`] = `
+Object {
+  "errors": Array [
+    [GraphQLError: Query error: Not a valid Email: ],
+  ],
+}
+`;
+
+exports[`test should ignore invalid email addresses 4`] = `
+Object {
+  "errors": Array [
+    [GraphQLError: Query error: Not a valid Email: ],
+  ],
+}
+`;
