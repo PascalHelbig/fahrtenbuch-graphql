@@ -32,3 +32,11 @@ it('should except a password with 5 chars', () =>
 it('should not except a password with less then 5 chars', () =>
   testPassword('1234')
 );
+
+it('should not except a password with more than 254 chars', () => {
+  let password = '';
+  for (let i = 0; i < 255; i += 1) {
+    password += 'a';
+  }
+  return testPassword(password);
+});
