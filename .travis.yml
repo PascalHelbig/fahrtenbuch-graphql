@@ -5,8 +5,7 @@ node_js:
 services:
   - mysql
 env:
-  - DB_DATABASE:knex_test
-  - DB_USER:root
+  - DB_DATABASE:knex_test DB_USER:root
 before_script:
   - mysql -e 'create database knex_test;'
 after_success: "npm run coveralls"
