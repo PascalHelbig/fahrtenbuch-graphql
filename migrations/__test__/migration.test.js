@@ -4,5 +4,7 @@ const knex = require('knex')({
 });
 
 it('should migrate', () =>
-  knex.migrate.latest()
+  knex.migrate.latest().finally(() =>
+    knex.destroy()
+  )
 );
