@@ -4,9 +4,8 @@ node_js:
   - "6"
 services:
   - mysql
-env:
-  - DB_DATABASE:knex_test DB_USER:root
 before_script:
   - mysql -e 'create database knex_test;'
+  - cp .env.travis .env
 after_success: "npm run coveralls"
 after_failure: "cat npm-debug.log"
