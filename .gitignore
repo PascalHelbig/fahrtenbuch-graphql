@@ -42,3 +42,6 @@ jspm_packages
 
 .env
 .idea
+
+# ignore all sqlite files
+*.sqlite
