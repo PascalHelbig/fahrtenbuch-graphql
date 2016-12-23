@@ -2,5 +2,12 @@ language: node_js
 node_js:
   - "node"
   - "6"
+services:
+  - mysql
+env:
+  - DB_DATABASE:knex_test
+  - DB_USER:root
+before_script:
+  - mysql -e 'create database knex_test;'
 after_success: "npm run coveralls"
 after_failure: "cat npm-debug.log"
