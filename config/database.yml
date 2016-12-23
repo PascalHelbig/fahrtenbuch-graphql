@@ -1,4 +1,4 @@
 test:
   adapter: sqlite3
-  database: ":memory:"
+  database: "migrations/__test__/testDb.sqlite"
   timeout: 500
