@@ -10,7 +10,7 @@
     "jest": "jest",
     "jest-watch": "jest --watch",
     "eslint": "eslint **/*.js",
-    "start": "node index.js"
+    "start": "node src/index.js"
   },
   "author": "Pascal Helbig",
   "license": "MIT",

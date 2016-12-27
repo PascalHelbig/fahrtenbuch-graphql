@@ -2,7 +2,7 @@ const { makeExecutableSchema } = require('graphql-tools');
 const PublicGroupType = require('./types/PublicGroupType/PublicGroupType');
 const LoggedInUserType = require('./types/LoggedInUserType/LoggedInUserType');
 const resolvers = require('./resolvers');
-const Mutation = require('./mutations');
+const Mutation = require('./mutations/index');
 
 const Query = `
   type Query {

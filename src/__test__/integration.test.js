@@ -1,7 +1,7 @@
 const Promise = require('bluebird');
 const request = require('supertest-as-promised');
 const server = require('../server');
-const config = require('./../knexfile');
+const config = require('../../knexfile');
 const knex = require('knex')(config);
 
 let app;
