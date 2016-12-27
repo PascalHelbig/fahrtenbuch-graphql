@@ -34,7 +34,9 @@
     "eslint": "^3.7.0",
     "eslint-config-airbnb-base": "^11.0.0",
     "eslint-plugin-import": "^2.1.0",
-    "jest-cli": "^18.0.0"
+    "jest-cli": "^18.0.0",
+    "supertest": "^2.0.1",
+    "supertest-as-promised": "^4.0.2"
   },
   "jest": {
     "collectCoverageFrom": ["**/*.js", "!**/node_modules/**", "!**/coverage/**"]
