@@ -7,7 +7,17 @@ const knex = require('knex')(config);
 let app;
 let userToken;
 
-const signUpUser = () => {
+/**
+ * start the server and migrate the database
+ */
+beforeAll(() =>
+  Promise.all([
+    new Promise((resolve) => { app = server(resolve); }),
+    knex.migrate.latest(),
+  ])
+);
+
+it('should signup the user', () => {
   const query = `
     mutation {
       signup(email: "test@test.de", password: "12345") {
@@ -20,21 +30,10 @@ const signUpUser = () => {
     .expect(200)
     .then(res => JSON.parse(res.text))
     .then((res) => {
-      console.log(res); // For debugging (temp)
       userToken = res.data.signup.token;
       return expect(userToken).not.toBeNull();
     });
-};
-
-/**
- * start the server and migrate the database
- */
-beforeAll(() =>
-  Promise.all([
-    new Promise((resolve) => { app = server(resolve); }),
-    knex.migrate.latest(),
-  ]).then(() => signUpUser())
-);
+});
 
 it('should login the user', () => {
   const query = `
