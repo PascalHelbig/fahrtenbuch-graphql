@@ -5,19 +5,9 @@ const config = require('./../knexfile');
 const knex = require('knex')(config);
 
 let app;
-let token;
+let userToken;
 
-/**
- * start the server and migrate the database
- */
-beforeAll(() =>
-  Promise.all([
-    new Promise((resolve) => { app = server(resolve); }),
-    knex.migrate.latest(),
-  ])
-);
-
-it('should signup a new user', () => {
+const signUpUser = () => {
   const query = `
     mutation {
       signup(email: "test@test.de", password: "12345") {
@@ -27,8 +17,23 @@ it('should signup a new user', () => {
   return request(app)
     .post('/graphql')
     .send({ query })
-    .expect(200);
-});
+    .expect(200)
+    .then(res => JSON.parse(res.text))
+    .then((res) => {
+      userToken = res.data.signup.token;
+      return expect(userToken).not.toBeNull();
+    });
+};
+
+/**
+ * start the server and migrate the database
+ */
+beforeAll(() =>
+  Promise.all([
+    new Promise((resolve) => { app = server(resolve); }),
+    knex.migrate.latest(),
+  ]).then(() => signUpUser())
+);
 
 it('should login the user', () => {
   const query = `
@@ -42,10 +47,7 @@ it('should login the user', () => {
     .send({ query })
     .expect(200)
     .then(res => JSON.parse(res.text))
-    .then((res) => {
-      token = res.data.login.token;
-      return expect(token).not.toBeNull();
-    });
+    .then(res => expect(res.data.login.token).not.toBeNull());
 });
 
 it('should run hello world on GET /', () =>
