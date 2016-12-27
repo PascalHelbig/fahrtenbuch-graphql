@@ -20,6 +20,7 @@ const signUpUser = () => {
     .expect(200)
     .then(res => JSON.parse(res.text))
     .then((res) => {
+      console.log(res); // For debugging (temp)
       userToken = res.data.signup.token;
       return expect(userToken).not.toBeNull();
     });
