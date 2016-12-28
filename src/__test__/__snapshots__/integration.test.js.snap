@@ -43,18 +43,6 @@ Object {
 }
 `;
 
-exports[`query it should query me 1`] = `
-Object {
-  "data": Object {
-    "me": Object {
-      "availableBoats": Array [],
-      "email": "test@test.de",
-      "participations": Array [],
-    },
-  },
-}
-`;
-
 exports[`query should fetch all groups 1`] = `
 Object {
   "data": Object {
@@ -68,6 +56,18 @@ Object {
         "name": "club 2",
       },
     ],
+  },
+}
+`;
+
+exports[`query should query me 1`] = `
+Object {
+  "data": Object {
+    "me": Object {
+      "availableBoats": Array [],
+      "email": "test@test.de",
+      "participations": Array [],
+    },
   },
 }
 `;

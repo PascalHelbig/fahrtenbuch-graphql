@@ -120,7 +120,7 @@ describe('query', () => {
       })
   );
 
-  it('it should query me', () => {
+  it('should query me', () => {
     const query = `{ 
       me(token: "${userToken}" ) {
         email
