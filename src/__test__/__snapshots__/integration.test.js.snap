@@ -1,0 +1,26 @@
+exports[`test should create a new group 1`] = `
+Object {
+  "data": Object {
+    "group1": Object {
+      "boats": Array [],
+      "is_club": true,
+      "members": Array [
+        Object {
+          "name": null,
+        },
+      ],
+      "name": "Group 1",
+    },
+    "group2": Object {
+      "boats": Array [],
+      "is_club": false,
+      "members": Array [
+        Object {
+          "name": null,
+        },
+      ],
+      "name": "Group 1",
+    },
+  },
+}
+`;

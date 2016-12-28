@@ -68,6 +68,30 @@ it('should create a new boat', () => {
     });
 });
 
+it('should create a new group', () => {
+  const query = `
+    mutation {
+      group1: addGroup(token: "${userToken}", group: { name: "Group 1", is_club: true }) {
+        ...groupFragment
+      }
+      group2: addGroup(token: "${userToken}", group: { name: "Group 1", is_club: false }) {
+        ...groupFragment
+      }
+    }
+    fragment groupFragment on Group {
+      name
+      is_club
+      members { name }
+      boats { id }
+    }`;
+  return request(app)
+    .post('/graphql')
+    .send({ query })
+    .expect(200)
+    .then(res => JSON.parse(res.text))
+    .then(res => expect(res).toMatchSnapshot());
+});
+
 it('should run hello world on GET /', () =>
   request(app)
     .get('/')
