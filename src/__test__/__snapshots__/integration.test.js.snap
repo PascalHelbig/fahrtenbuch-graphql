@@ -1,4 +1,4 @@
-exports[`test should addEntry 1`] = `
+exports[`mutations should addEntry 1`] = `
 Object {
   "motor": 2,
   "participations": Array [
@@ -16,7 +16,7 @@ Object {
 }
 `;
 
-exports[`test should create a new group 1`] = `
+exports[`mutations should create a new group 1`] = `
 Object {
   "data": Object {
     "group1": Object {

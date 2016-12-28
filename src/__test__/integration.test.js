@@ -19,104 +19,106 @@ beforeAll(() =>
   )
 );
 
-it('should signup the user', () => {
-  const query = `
-    mutation {
-      signup(email: "test@test.de", password: "12345") {
-        token
-      }
-    }`;
-  return request(app)
-    .post('/graphql')
-    .send({ query })
-    .expect(200)
-    .then(res => JSON.parse(res.text))
-    .then((res) => {
-      userToken = res.data.signup.token;
-      return expect(userToken).not.toBeNull();
-    });
-});
+describe('mutations', () => {
+  it('should signup the user', () => {
+    const query = `
+      mutation {
+        signup(email: "test@test.de", password: "12345") {
+          token
+        }
+      }`;
+    return request(app)
+      .post('/graphql')
+      .send({ query })
+      .expect(200)
+      .then(res => JSON.parse(res.text))
+      .then((res) => {
+        userToken = res.data.signup.token;
+        return expect(userToken).not.toBeNull();
+      });
+  });
 
-it('should login the user', () => {
-  const query = `
-    mutation {
-      login(email: "test@test.de", password: "12345") {
-        token
-      }
-    }`;
-  return request(app)
-    .post('/graphql')
-    .send({ query })
-    .expect(200)
-    .then(res => JSON.parse(res.text))
-    .then(res => expect(res.data.login.token).not.toBeNull());
-});
+  it('should login the user', () => {
+    const query = `
+      mutation {
+        login(email: "test@test.de", password: "12345") {
+          token
+        }
+      }`;
+    return request(app)
+      .post('/graphql')
+      .send({ query })
+      .expect(200)
+      .then(res => JSON.parse(res.text))
+      .then(res => expect(res.data.login.token).not.toBeNull());
+  });
 
-it('should create a new boat', () => {
-  const query = `
-    mutation {
-      addUserBoat(token: "${userToken}", boat: { name: "test boat" }) {
-        name
-      }
-    }`;
-  return request(app)
-    .post('/graphql')
-    .send({ query })
-    .expect(200)
-    .then(res => JSON.parse(res.text))
-    .then((res) => {
-      const { addUserBoat } = res.data;
-      return expect(addUserBoat).toEqual({ name: 'test boat' });
-    });
-});
+  it('should create a new boat', () => {
+    const query = `
+      mutation {
+        addUserBoat(token: "${userToken}", boat: { name: "test boat" }) {
+          name
+        }
+      }`;
+    return request(app)
+      .post('/graphql')
+      .send({ query })
+      .expect(200)
+      .then(res => JSON.parse(res.text))
+      .then((res) => {
+        const { addUserBoat } = res.data;
+        return expect(addUserBoat).toEqual({ name: 'test boat' });
+      });
+  });
 
-it('should addEntry', () => {
-  const query = `
-    mutation {
-      addEntry(
-        token: "${userToken}"
-        entry: { text: "entry text", start: "2016-12-28", end: "2016-12-28", sailed: 1, motor: 2}
-        participations: [{ user: 1234, boat: 1235 }]
-       ) {
-        text
-        sailed
-        motor
-        participations { 
-          user { id }
-          boat { id }
+  it('should addEntry', () => {
+    const query = `
+      mutation {
+        addEntry(
+          token: "${userToken}"
+          entry: { text: "entry text", start: "2016-12-28", end: "2016-12-28", sailed: 1, motor: 2}
+          participations: [{ user: 1234, boat: 1235 }]
+         ) {
+          text
+          sailed
+          motor
+          participations { 
+            user { id }
+            boat { id }
+          }
+        }
+      }`;
+    return request(app)
+      .post('/graphql')
+      .send({ query })
+      .expect(200)
+      .then(res => JSON.parse(res.text))
+      .then(res => expect(res.data.addEntry).toMatchSnapshot());
+  });
+
+  it('should create a new group', () => {
+    const query = `
+      mutation {
+        group1: addGroup(token: "${userToken}", group: { name: "Group 1", is_club: true }) {
+          ...groupFragment
+        }
+        group2: addGroup(token: "${userToken}", group: { name: "Group 1", is_club: false }) {
+          ...groupFragment
         }
       }
-    }`;
-  return request(app)
-    .post('/graphql')
-    .send({ query })
-    .expect(200)
-    .then(res => JSON.parse(res.text))
-    .then(res => expect(res.data.addEntry).toMatchSnapshot());
-});
-
-it('should create a new group', () => {
-  const query = `
-    mutation {
-      group1: addGroup(token: "${userToken}", group: { name: "Group 1", is_club: true }) {
-        ...groupFragment
-      }
-      group2: addGroup(token: "${userToken}", group: { name: "Group 1", is_club: false }) {
-        ...groupFragment
-      }
-    }
-    fragment groupFragment on Group {
-      name
-      is_club
-      members { name }
-      boats { id }
-    }`;
-  return request(app)
-    .post('/graphql')
-    .send({ query })
-    .expect(200)
-    .then(res => JSON.parse(res.text))
-    .then(res => expect(res).toMatchSnapshot());
+      fragment groupFragment on Group {
+        name
+        is_club
+        members { name }
+        boats { id }
+      }`;
+    return request(app)
+      .post('/graphql')
+      .send({ query })
+      .expect(200)
+      .then(res => JSON.parse(res.text))
+      .then(res => expect(res).toMatchSnapshot());
+  });
 });
 
 it('should run hello world on GET /', () =>
