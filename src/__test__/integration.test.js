@@ -124,6 +124,7 @@ describe('query', () => {
     const query = `{ 
       me(token: "${userToken}" ) {
         email
+        availableBoats { id }
       }
     }`;
     return testQuery(query).then(res => expect(res).toMatchSnapshot());
