@@ -1,4 +1,4 @@
-const LoggedInUserType = require('./../LoggedInUserType/LoggedInUserType');
+const LoggedInUserType = require('../LoggedInUserType/LoggedInUserType');
 
 const LoginType = `
   type Login {

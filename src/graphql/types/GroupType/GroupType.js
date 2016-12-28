@@ -1,6 +1,6 @@
-const UserType = require('./../UserType/UserType');
-const BoatType = require('./../BoatType/BoatType');
-const OwnerInterface = require('./../../interfaces/OwnerInterface').schema;
+const UserType = require('../UserType/UserType');
+const BoatType = require('../BoatType/BoatType');
+const OwnerInterface = require('../../interfaces/OwnerInterface').schema;
 
 const GroupType = `
   type Group implements Owner {

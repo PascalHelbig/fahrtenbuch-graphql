@@ -1,4 +1,4 @@
-const OwnerInterface = require('./../../interfaces/OwnerInterface').schema;
+const OwnerInterface = require('../../interfaces/OwnerInterface').schema;
 
 const BoatType = `
   type Boat {

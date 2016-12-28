@@ -1,6 +1,6 @@
-const GroupType = require('./../GroupType/GroupType');
-const BoatType = require('./../BoatType/BoatType');
-const ParticipationType = require('./../ParticipationType/ParticipationType');
+const GroupType = require('../GroupType/GroupType');
+const BoatType = require('../BoatType/BoatType');
+const ParticipationType = require('../ParticipationType/ParticipationType');
 
 const LoggedInUserType = `
   type LoggedInUser {
