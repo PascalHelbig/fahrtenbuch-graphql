@@ -50,6 +50,24 @@ it('should login the user', () => {
     .then(res => expect(res.data.login.token).not.toBeNull());
 });
 
+it('should create a new boat', () => {
+  const query = `
+    mutation {
+      addUserBoat(token: "${userToken}", boat: { name: "test boat" }) {
+        name
+      }
+    }`;
+  return request(app)
+    .post('/graphql')
+    .send({ query })
+    .expect(200)
+    .then(res => JSON.parse(res.text))
+    .then((res) => {
+      const { addUserBoat } = res.data;
+      return expect(addUserBoat).toEqual({ name: 'test boat' });
+    });
+});
+
 it('should run hello world on GET /', () =>
   request(app)
     .get('/')
