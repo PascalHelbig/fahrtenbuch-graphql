@@ -119,6 +119,15 @@ describe('query', () => {
           .then(res => expect(res).toMatchSnapshot());
       })
   );
+
+  it('it should query me', () => {
+    const query = `{ 
+      me(token: "${userToken}" ) {
+        email
+      }
+    }`;
+    return testQuery(query).then(res => expect(res).toMatchSnapshot());
+  });
 });
 
 it('should run hello world on GET /', () =>

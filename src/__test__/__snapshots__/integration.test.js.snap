@@ -43,6 +43,16 @@ Object {
 }
 `;
 
+exports[`query it should query me 1`] = `
+Object {
+  "data": Object {
+    "me": Object {
+      "email": "test@test.de",
+    },
+  },
+}
+`;
+
 exports[`query should fetch all groups 1`] = `
 Object {
   "data": Object {
