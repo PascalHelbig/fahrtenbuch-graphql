@@ -121,6 +121,25 @@ describe('mutations', () => {
   });
 });
 
+describe('query', () => {
+  it('should fetch all groups', () =>
+    knex('memberships').del()
+      .then(() => knex('groups').del())
+      .then(() => knex('groups').insert([{ name: 'club 1', is_club: true }, { name: 'club 2', is_club: false }]))
+      .then(() => {
+        const query = `{
+          groups { name, is_club }
+        }`;
+        return request(app)
+          .post('/graphql')
+          .send({ query })
+          .expect(200)
+          .then(res => JSON.parse(res.text))
+          .then(res => expect(res).toMatchSnapshot());
+      })
+  );
+});
+
 it('should run hello world on GET /', () =>
   request(app)
     .get('/')

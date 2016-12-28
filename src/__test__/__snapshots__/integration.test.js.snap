@@ -42,3 +42,20 @@ Object {
   },
 }
 `;
+
+exports[`query should fetch all groups 1`] = `
+Object {
+  "data": Object {
+    "groups": Array [
+      Object {
+        "is_club": true,
+        "name": "club 1",
+      },
+      Object {
+        "is_club": false,
+        "name": "club 2",
+      },
+    ],
+  },
+}
+`;
