@@ -74,6 +74,7 @@ const User = bookshelf.model('User', {
     ).fetchAll({ withRelated: 'owner' });
   },
 
+  /*
   availableBoatsFromUser() {
     return Boat.query(qb =>
       qb.distinct()
@@ -93,6 +94,7 @@ const User = bookshelf.model('User', {
         .where('memberships.user_id', this.get('id'))
     ).fetchAll({ withRelated: 'owner' });
   },
+  */
 
   // virtuals: {
   //   gravatar: function() {
