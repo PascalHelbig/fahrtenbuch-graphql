@@ -79,8 +79,6 @@ it('should addEntry', () => {
         participations: [{ user: 1234, boat: 1235 }]
        ) {
         text
-        start
-        end
         sailed
         motor
         participations { 
