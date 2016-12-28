@@ -42,6 +42,16 @@ describe('mutations', () => {
     });
   });
 
+  it('should not except an email address twice', () => {
+    const query = `
+      mutation {
+        signup1: signup(email: "test2@test.de", password: "12345") { token } 
+        signup2: signup(email: "test2@test.de", password: "12345") { token } 
+      }`;
+    return testQuery(query)
+      .then(res => expect(res.errors[0].message).toEqual('The email address you have entered is already associated with another account.'));
+  });
+
   it('should login the user', () => {
     const query = `
       mutation {
