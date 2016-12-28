@@ -14,7 +14,9 @@ beforeAll(() =>
   Promise.all([
     new Promise((resolve) => { app = server(resolve); }),
     knex.migrate.latest(),
-  ])
+  ]).then(() =>
+    knex.seed.run()
+  )
 );
 
 it('should signup the user', () => {
@@ -66,6 +68,33 @@ it('should create a new boat', () => {
       const { addUserBoat } = res.data;
       return expect(addUserBoat).toEqual({ name: 'test boat' });
     });
+});
+
+it('should addEntry', () => {
+  const query = `
+    mutation {
+      addEntry(
+        token: "${userToken}"
+        entry: { text: "entry text", start: "2016-12-28", end: "2016-12-28", sailed: 1, motor: 2}
+        participations: [{ user: 1234, boat: 1235 }]
+       ) {
+        text
+        start
+        end
+        sailed
+        motor
+        participations { 
+          user { id }
+          boat { id }
+        }
+      }
+    }`;
+  return request(app)
+    .post('/graphql')
+    .send({ query })
+    .expect(200)
+    .then(res => JSON.parse(res.text))
+    .then(res => expect(res.data.addEntry).toMatchSnapshot());
 });
 
 it('should create a new group', () => {

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 const envs = {
   test: {
     client: 'mysql',

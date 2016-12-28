@@ -10,7 +10,7 @@ const Owner = require('./interfaces/OwnerInterface').resolver;
 const Password = require('./scalars/PasswordScalar').resolver;
 const Email = require('./scalars/EmailScalar').resolver;
 const Entry = require('./types/EntryType/EntryTypeResolver');
-const Participation = require('./types/ParticipationType/ParticipationType');
+const Participation = require('./types/ParticipationType/ParticipationTypeResolver');
 
 module.exports = {
   Query: {

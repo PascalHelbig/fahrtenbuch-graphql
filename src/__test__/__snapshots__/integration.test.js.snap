@@ -1,3 +1,23 @@
+exports[`test should addEntry 1`] = `
+Object {
+  "end": "Wed Dec 28 2016 00:00:00 GMT+0100 (Mitteleuropäische Zeit)",
+  "motor": 2,
+  "participations": Array [
+    Object {
+      "boat": Object {
+        "id": "1235",
+      },
+      "user": Object {
+        "id": "1234",
+      },
+    },
+  ],
+  "sailed": 1,
+  "start": "Wed Dec 28 2016 00:00:00 GMT+0100 (Mitteleuropäische Zeit)",
+  "text": "entry text",
+}
+`;
+
 exports[`test should create a new group 1`] = `
 Object {
   "data": Object {
