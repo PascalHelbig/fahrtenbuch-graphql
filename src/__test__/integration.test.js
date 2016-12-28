@@ -3,6 +3,8 @@ const request = require('supertest-as-promised');
 const server = require('../server');
 const config = require('../../knexfile');
 const knex = require('knex')(config);
+const User = require('../models/User');
+const userController = require('../controllers/user');
 
 let app;
 let userToken;
@@ -130,6 +132,35 @@ describe('query', () => {
     }`;
     return testQuery(query).then(res => expect(res).toMatchSnapshot());
   });
+
+  it('should work with OwnerInterface', () =>
+    new User().save().then(user =>
+      Promise.all([
+        user.boats().create({ name: 'users boat' }),
+        user.groups().create({ name: 'a group' }).then(
+          group => group.boats().create({ name: 'group boat' })
+        ),
+      ]).then(() => {
+        const token = userController.generateToken(user);
+        const query = `{
+          me(token: "${token}") {
+            availableBoats {
+              id
+              owner {
+                ... on User {
+                  name
+                }
+                ... on Group {
+                  is_club
+                }
+              }
+            }
+          }
+        }`;
+        return testQuery(query).then(res => expect(res).toMatchSnapshot());
+      })
+    )
+  );
 });
 
 it('should run hello world on GET /', () =>

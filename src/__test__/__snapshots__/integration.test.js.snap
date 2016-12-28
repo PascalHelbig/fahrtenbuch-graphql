@@ -71,3 +71,26 @@ Object {
   },
 }
 `;
+
+exports[`query should work with OwnerInterface 1`] = `
+Object {
+  "data": Object {
+    "me": Object {
+      "availableBoats": Array [
+        Object {
+          "id": "1237",
+          "owner": Object {
+            "name": null,
+          },
+        },
+        Object {
+          "id": "1238",
+          "owner": Object {
+            "is_club": true,
+          },
+        },
+      ],
+    },
+  },
+}
+`;
