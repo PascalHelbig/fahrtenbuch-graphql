@@ -8,8 +8,6 @@ const OwnerInterface = `
 `;
 
 const resolver = {
-  id: owner => owner.get('id'),
-  name: owner => owner.get('name'),
   __resolveType: (owner) => {
     if (owner instanceof User) {
       return 'User';
