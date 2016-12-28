@@ -61,6 +61,14 @@ describe('mutations', () => {
     return testQuery(query).then(res => expect(res.errors[0].message).toBe('Emailaddress not found'));
   });
 
+  it('should not except an invalid password', () => {
+    const query = `mutation {
+      signup(email: "abcd@efgh.ij", password: "12345") { token }
+      login(email: "abcd@efgh.ij", password: "a wrong password" ) { token }
+    }`;
+    return testQuery(query).then(res => expect(res.errors[0].message).toBe('Invalid email or password'));
+  });
+
   it('should login the user', () => {
     const query = `
       mutation {
