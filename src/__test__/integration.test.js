@@ -49,7 +49,16 @@ describe('mutations', () => {
         signup2: signup(email: "test2@test.de", password: "12345") { token } 
       }`;
     return testQuery(query)
-      .then(res => expect(res.errors[0].message).toEqual('The email address you have entered is already associated with another account.'));
+      .then(res => expect(res.errors[0].message).toBe('The email address you have entered is already associated with another account.'));
+  });
+
+  it('should not except an not existing email address', () => {
+    const query = `mutation {
+      login(email: "notExisting@email.com", password: "12345" ) {
+        token
+      }
+    }`;
+    return testQuery(query).then(res => expect(res.errors[0].message).toBe('Emailaddress not found'));
   });
 
   it('should login the user', () => {
