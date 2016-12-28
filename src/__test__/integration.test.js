@@ -125,6 +125,7 @@ describe('query', () => {
       me(token: "${userToken}" ) {
         email
         availableBoats { id }
+        participations { id }
       }
     }`;
     return testQuery(query).then(res => expect(res).toMatchSnapshot());

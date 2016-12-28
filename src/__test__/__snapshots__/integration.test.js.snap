@@ -49,6 +49,7 @@ Object {
     "me": Object {
       "availableBoats": Array [],
       "email": "test@test.de",
+      "participations": Array [],
     },
   },
 }
