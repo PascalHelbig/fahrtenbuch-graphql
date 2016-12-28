@@ -65,9 +65,6 @@ module.exports.addGroup = (token, group) =>
     )
   );
 
-module.exports.findById = id =>
-  new User({ id }).fetch({ require: true });
-
 module.exports.instanceof = group => group instanceof User;
 
 const addParticipations = (entry, participations) =>
