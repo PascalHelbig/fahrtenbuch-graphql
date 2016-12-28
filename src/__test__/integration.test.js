@@ -7,6 +7,13 @@ const knex = require('knex')(config);
 let app;
 let userToken;
 
+const testQuery = (query, expectedStatus = 200) =>
+  request(app)
+    .post('/graphql')
+    .send({ query })
+    .expect(expectedStatus)
+    .then(res => JSON.parse(res.text));
+
 /**
  * start the server and migrate the database
  */
@@ -27,15 +34,10 @@ describe('mutations', () => {
           token
         }
       }`;
-    return request(app)
-      .post('/graphql')
-      .send({ query })
-      .expect(200)
-      .then(res => JSON.parse(res.text))
-      .then((res) => {
-        userToken = res.data.signup.token;
-        return expect(userToken).not.toBeNull();
-      });
+    return testQuery(query).then((res) => {
+      userToken = res.data.signup.token;
+      return expect(userToken).not.toBeNull();
+    });
   });
 
   it('should login the user', () => {
@@ -45,11 +47,7 @@ describe('mutations', () => {
           token
         }
       }`;
-    return request(app)
-      .post('/graphql')
-      .send({ query })
-      .expect(200)
-      .then(res => JSON.parse(res.text))
+    return testQuery(query)
       .then(res => expect(res.data.login.token).not.toBeNull());
   });
 
@@ -60,15 +58,10 @@ describe('mutations', () => {
           name
         }
       }`;
-    return request(app)
-      .post('/graphql')
-      .send({ query })
-      .expect(200)
-      .then(res => JSON.parse(res.text))
-      .then((res) => {
-        const { addUserBoat } = res.data;
-        return expect(addUserBoat).toEqual({ name: 'test boat' });
-      });
+    return testQuery(query).then((res) => {
+      const { addUserBoat } = res.data;
+      return expect(addUserBoat).toEqual({ name: 'test boat' });
+    });
   });
 
   it('should addEntry', () => {
@@ -88,11 +81,7 @@ describe('mutations', () => {
           }
         }
       }`;
-    return request(app)
-      .post('/graphql')
-      .send({ query })
-      .expect(200)
-      .then(res => JSON.parse(res.text))
+    return testQuery(query)
       .then(res => expect(res.data.addEntry).toMatchSnapshot());
   });
 
@@ -112,11 +101,7 @@ describe('mutations', () => {
         members { name }
         boats { id }
       }`;
-    return request(app)
-      .post('/graphql')
-      .send({ query })
-      .expect(200)
-      .then(res => JSON.parse(res.text))
+    return testQuery(query)
       .then(res => expect(res).toMatchSnapshot());
   });
 });
@@ -130,11 +115,7 @@ describe('query', () => {
         const query = `{
           groups { name, is_club }
         }`;
-        return request(app)
-          .post('/graphql')
-          .send({ query })
-          .expect(200)
-          .then(res => JSON.parse(res.text))
+        return testQuery(query)
           .then(res => expect(res).toMatchSnapshot());
       })
   );
