@@ -9,11 +9,11 @@ const userController = require('../controllers/user');
 let app;
 let userToken;
 
-const testQuery = (query, expectedStatus = 200) =>
+const testQuery = query =>
   request(app)
     .post('/graphql')
     .send({ query })
-    .expect(expectedStatus)
+    .expect(200)
     .then(res => JSON.parse(res.text));
 
 /**
