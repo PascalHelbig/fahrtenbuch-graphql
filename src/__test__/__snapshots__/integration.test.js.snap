@@ -1,10 +1,16 @@
 exports[`mutations should addEntry 1`] = `
 Object {
+  "creator": Object {
+    "name": null,
+  },
   "motor": 2,
   "participations": Array [
     Object {
       "boat": Object {
         "id": "1235",
+      },
+      "entry": Object {
+        "text": "entry text",
       },
       "user": Object {
         "id": "1234",

@@ -107,7 +107,9 @@ describe('mutations', () => {
           participations { 
             user { id }
             boat { id }
+            entry { text }
           }
+          creator { name }
         }
       }`;
     return testQuery(query)
