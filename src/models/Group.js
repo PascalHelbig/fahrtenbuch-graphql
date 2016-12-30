@@ -11,7 +11,4 @@ module.exports = bookshelf.model('Group', {
   boats() {
     return this.morphMany('Boat', 'owner');
   },
-  isAdmin() {
-    return this.pivot.attributes.is_admin;
-  },
 });
