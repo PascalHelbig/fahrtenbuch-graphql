@@ -33,10 +33,12 @@ Object {
 }
 `;
 
-exports[`test should get the groups from model 1`] = `
+exports[`test should get the memberships from model 1`] = `
 Object {
   "data": Object {
-    "loggedInUser": null,
+    "loggedInUser": Object {
+      "memberships": null,
+    },
   },
   "errors": Array [
     [GraphQLError: user.related(...).fetch is not a function],

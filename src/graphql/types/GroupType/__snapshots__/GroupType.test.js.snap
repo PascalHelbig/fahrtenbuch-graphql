@@ -11,12 +11,16 @@ Object {
     ],
     "id": "1337",
     "is_club": true,
-    "members": Array [
+    "memberships": Array [
       Object {
-        "id": "1338",
+        "user": Object {
+          "id": "1338",
+        },
       },
       Object {
-        "id": "1339",
+        "user": Object {
+          "id": "1339",
+        },
       },
     ],
     "name": "Club Name",

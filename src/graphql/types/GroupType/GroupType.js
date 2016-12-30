@@ -1,5 +1,9 @@
-const UserType = require('../UserType/UserType');
+// https://github.com/apollostack/graphql-server/issues/126#issuecomment-245833750
+// eslint-disable-next-line no-use-before-define
+module.exports = () => [GroupType, BoatType, OwnerInterface, MembershipType];
+
 const BoatType = require('../BoatType/BoatType');
+const MembershipType = require('../MembershipType/MembershipType');
 const OwnerInterface = require('../../interfaces/OwnerInterface').schema;
 
 const GroupType = `
@@ -7,9 +11,7 @@ const GroupType = `
     id: ID!
     name: String!
     is_club: Boolean!
-    members: [User]!
     boats: [Boat]!
+    memberships: [Membership]
   }
 `;
-
-module.exports = () => [GroupType, UserType, BoatType, OwnerInterface];

@@ -1,0 +1,31 @@
+exports[`test should get the group from model 1`] = `
+Object {
+  "data": Object {
+    "membership": null,
+  },
+  "errors": Array [
+    [GraphQLError: (intermediate value).fetch is not a function],
+  ],
+}
+`;
+
+exports[`test should get the is_admin from model 1`] = `
+Object {
+  "data": Object {
+    "membership": Object {
+      "is_admin": true,
+    },
+  },
+}
+`;
+
+exports[`test should get the user from model 1`] = `
+Object {
+  "data": Object {
+    "membership": null,
+  },
+  "errors": Array [
+    [GraphQLError: (intermediate value).fetch is not a function],
+  ],
+}
+`;

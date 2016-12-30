@@ -12,7 +12,10 @@ it('has to be a valid schema', () => {
         id: () => '1337',
         name: () => 'Club Name',
         is_club: () => true,
-        members: () => [{ id: 1338 }, { id: 1339 }],
+        memberships: () => [
+          { user: { id: 1338 } },
+          { user: { id: 1339 } },
+        ],
         boats: () => [{ id: 1340 }, { id: 1341 }],
       }),
     },
@@ -23,7 +26,9 @@ it('has to be a valid schema', () => {
       id
       name
       is_club
-      members { id }
+      memberships { 
+        user { id }
+      }
       boats { id }
     }
   `;

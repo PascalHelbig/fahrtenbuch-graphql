@@ -70,12 +70,6 @@ Object {
               },
             },
             Object {
-              "name": "groups",
-              "type": Object {
-                "name": null,
-              },
-            },
-            Object {
               "name": "boats",
               "type": Object {
                 "name": null,
@@ -89,6 +83,12 @@ Object {
             },
             Object {
               "name": "participations",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "memberships",
               "type": Object {
                 "name": null,
               },
@@ -129,41 +129,6 @@ Object {
             },
           ],
           "name": "Owner",
-        },
-        Object {
-          "fields": Array [
-            Object {
-              "name": "id",
-              "type": Object {
-                "name": null,
-              },
-            },
-            Object {
-              "name": "name",
-              "type": Object {
-                "name": null,
-              },
-            },
-            Object {
-              "name": "is_club",
-              "type": Object {
-                "name": null,
-              },
-            },
-            Object {
-              "name": "members",
-              "type": Object {
-                "name": null,
-              },
-            },
-            Object {
-              "name": "boats",
-              "type": Object {
-                "name": null,
-              },
-            },
-          ],
-          "name": "Group",
         },
         Object {
           "fields": Array [
@@ -273,6 +238,64 @@ Object {
         Object {
           "fields": null,
           "name": "Int",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "user",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "group",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "is_admin",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "Membership",
+        },
+        Object {
+          "fields": Array [
+            Object {
+              "name": "id",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "name",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "is_club",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "boats",
+              "type": Object {
+                "name": null,
+              },
+            },
+            Object {
+              "name": "memberships",
+              "type": Object {
+                "name": null,
+              },
+            },
+          ],
+          "name": "Group",
         },
         Object {
           "fields": Array [

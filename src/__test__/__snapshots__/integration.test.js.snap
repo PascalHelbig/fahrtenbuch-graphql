@@ -28,9 +28,11 @@ Object {
     "group1": Object {
       "boats": Array [],
       "is_club": true,
-      "members": Array [
+      "memberships": Array [
         Object {
-          "name": null,
+          "user": Object {
+            "name": null,
+          },
         },
       ],
       "name": "Group 1",
@@ -38,9 +40,11 @@ Object {
     "group2": Object {
       "boats": Array [],
       "is_club": false,
-      "members": Array [
+      "memberships": Array [
         Object {
-          "name": null,
+          "user": Object {
+            "name": null,
+          },
         },
       ],
       "name": "Group 1",
@@ -72,6 +76,7 @@ Object {
     "me": Object {
       "availableBoats": Array [],
       "email": "test@test.de",
+      "memberships": Array [],
       "participations": Array [],
     },
   },

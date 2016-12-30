@@ -68,8 +68,8 @@ it('should get the user from model', () => {
   );
 });
 
-it('should get the groups from model', () =>
-  testPropterty('groups { id }', [{ id: 'group id' }]).then(({ related }) =>
+it('should get the memberships from model', () =>
+  testPropterty('memberships { group { id } }', []).then(({ related }) =>
     expect(related).toHaveBeenCalledWith('groups')
   )
 );

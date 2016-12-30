@@ -15,12 +15,16 @@ Object {
       },
     ],
     "email": "email@example.com",
-    "groups": Array [
+    "memberships": Array [
       Object {
-        "id": "1338",
+        "group": Object {
+          "id": "1338",
+        },
       },
       Object {
-        "id": "1339",
+        "group": Object {
+          "id": "1339",
+        },
       },
     ],
     "participations": Array [

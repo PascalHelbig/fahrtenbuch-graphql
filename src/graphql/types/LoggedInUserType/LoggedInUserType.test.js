@@ -11,7 +11,10 @@ it('has to be a valid schema', () => {
       LoggedInUser: () => ({
         user: () => ({ id: 1337 }),
         email: () => 'email@example.com',
-        groups: () => [{ id: 1338 }, { id: 1339 }],
+        memberships: () => [
+          { group: { id: 1338 } },
+          { group: { id: 1339 } },
+        ],
         boats: () => [{ id: 1340 }, { id: 1341 }],
         availableBoats: () => [{ id: 1341 }],
         participations: () => [{ id: 1342 }, { id: 1343 }],
@@ -23,7 +26,9 @@ it('has to be a valid schema', () => {
     query {
       email
       user { id }
-      groups { id }
+      memberships { 
+        group { id } 
+      }
       boats { id }
       availableBoats { id }
       participations { id }

@@ -50,8 +50,8 @@ it('should get the is_club from model', () =>
   )
 );
 
-it('should get the members from model', () =>
-  testPropterty('members { id }', [{ id: 'a member id' }]).then(({ related }) =>
+it('should get the memberships from model', () =>
+  testPropterty('memberships { user { id } }', [{ user: { id: 'a member id' } }]).then(({ related }) =>
     expect(related).toHaveBeenCalledWith('members')
   )
 );

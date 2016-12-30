@@ -129,7 +129,9 @@ describe('mutations', () => {
       fragment groupFragment on Group {
         name
         is_club
-        members { name }
+        memberships { 
+         user { name }
+       }
         boats { id }
       }`;
     return testQuery(query)
@@ -157,6 +159,9 @@ describe('query', () => {
         email
         availableBoats { id }
         participations { id }
+        memberships {
+          group { id }
+        }
       }
     }`;
     return testQuery(query).then(res => expect(res).toMatchSnapshot());

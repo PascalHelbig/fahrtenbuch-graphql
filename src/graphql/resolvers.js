@@ -11,6 +11,7 @@ const Password = require('./scalars/PasswordScalar').resolver;
 const Email = require('./scalars/EmailScalar').resolver;
 const Entry = require('./types/EntryType/EntryTypeResolver');
 const Participation = require('./types/ParticipationType/ParticipationTypeResolver');
+const Membership = require('./types/MembershipType/MembershipTypeResolver');
 
 module.exports = {
   Query: {
@@ -36,4 +37,5 @@ module.exports = {
   Email,
   Entry,
   Participation,
+  Membership,
 };
