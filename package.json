@@ -19,7 +19,7 @@
     "bluebird": "^3.4.6",
     "bookshelf": "^0.10.1",
     "cors": "^2.8.1",
-    "dotenv": "^2.0.0",
+    "dotenv": "^3.0.0",
     "express": "^4.14.0",
     "express-graphql": "^0.6.1",
     "graphql": "^0.8.2",
